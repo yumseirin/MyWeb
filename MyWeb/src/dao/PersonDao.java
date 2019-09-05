@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -39,12 +40,13 @@ public class PersonDao extends DataBaseFactory {
 	 * @throws SQLException
 	 */
 	public int addPerson(Person p, Connection conn) throws SQLException {
-		String sql = "insert into person values(seq_personid.nextval,?,?,?,?)";
+		String sql = "insert into person values(seq_personid.nextval,?,?,?,?,?)";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setString(1, p.getUname());
 		ps.setString(2, p.getPwd());
 		ps.setString(3, p.getSex());
 		ps.setString(4, p.getLikes());
+		ps.setDate(5, new Date(p.getBir().getTime()));
 		int count = ps.executeUpdate();
 		return count;
 	}
@@ -68,6 +70,7 @@ public class PersonDao extends DataBaseFactory {
 			p.setPwd(rs.getString("pwd"));
 			p.setSex(rs.getString("sex"));
 			p.setLikes(rs.getString("likes"));
+			p.setBir((java.util.Date) rs.getDate("bir"));
 			list.add(p);
 		}
 		return list;
@@ -94,6 +97,7 @@ public class PersonDao extends DataBaseFactory {
 			person.setPwd(rs.getString("pwd"));
 			person.setSex(rs.getString("sex"));
 			person.setLikes(rs.getString("likes"));
+			p.setBir((java.util.Date) rs.getDate("bir"));
 		}
 		return person;
 	}
@@ -107,13 +111,14 @@ public class PersonDao extends DataBaseFactory {
 	 * @throws SQLException
 	 */
 	public int updatePerson(Person p, Connection conn) throws SQLException {
-		String sql = "update person set uname=?,pwd=?,sex=?,likes=? where pid=?";
+		String sql = "update person set uname=?,pwd=?,sex=?,likes=?,bir=? where pid=?";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setString(1, p.getUname());
 		ps.setString(2, p.getPwd());
 		ps.setString(3, p.getSex());
 		ps.setString(4, p.getLikes());
-		ps.setInt(5, p.getPid());
+		ps.setDate(5, new Date(p.getBir().getTime()));
+		ps.setInt(6, p.getPid());
 		int count = ps.executeUpdate();
 		return count;
 	}

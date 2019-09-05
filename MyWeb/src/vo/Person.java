@@ -8,7 +8,7 @@ public class Person {
 	private String pwd;
 	private String sex;
 	private String likes;
-	private Date yue;
+	private Date bir;
 
 	public int getPid() {
 		return pid;
@@ -50,12 +50,12 @@ public class Person {
 		this.likes = likes;
 	}
 
-	public Date getYue() {
-		return yue;
+	public Date getBir() {
+		return bir;
 	}
 
-	public void setYue(Date yue) {
-		this.yue = yue;
+	public void setBir(Date bir) {
+		this.bir = bir;
 	}
 
 }

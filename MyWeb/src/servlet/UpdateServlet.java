@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import biz.PersonBiz;
 
 //import util.DateUtil;
+import util.DateUtil;
 import vo.Person;
 
 @SuppressWarnings("serial")
@@ -31,6 +32,7 @@ public class UpdateServlet extends HttpServlet {
 		String pwd = request.getParameter("pwd");
 		String sex = request.getParameter("sex");
 		String[] likes = request.getParameterValues("like");
+		String bir = request.getParameter("bir");
 
 		Person p = new Person();
 		p.setPid(Integer.parseInt(pid));
@@ -43,6 +45,7 @@ public class UpdateServlet extends HttpServlet {
 			strs += str + ",";
 		}
 		p.setLikes(strs);
+		p.setBir(DateUtil.stringToDate(bir));
 
 		PersonBiz biz = new PersonBiz();
 		int count = biz.updatePerson(p);

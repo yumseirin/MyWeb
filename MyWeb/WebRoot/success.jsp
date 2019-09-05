@@ -47,6 +47,9 @@
 					爱好
 				</TD>
 				<TD>
+					生日
+				</TD>
+				<TD>
 					操作
 				</TD>
 			</TR>
@@ -79,6 +82,7 @@
 				<TD><%=p.getPwd()%></TD>
 				<TD><%=sex%></TD>
 				<TD><%=like%></TD>
+				<TD><%=p.getBir()%></TD>
 				<TD>
 					<a href="select?pid=<%=p.getPid()%>">修改</a>&emsp;
 					<a href="delete?pid=<%=p.getPid()%>">删除</a>

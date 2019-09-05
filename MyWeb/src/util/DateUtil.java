@@ -13,7 +13,7 @@ import java.util.Date;
 public class DateUtil {
 	public static Date stringToDate(String str) {
 		Date date = null;
-		DateFormat df = DateFormat.getDateTimeInstance();
+		DateFormat df = DateFormat.getDateInstance();
 		try {
 			date = df.parse(str);
 		} catch (ParseException e) {

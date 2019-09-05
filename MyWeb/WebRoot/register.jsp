@@ -17,6 +17,8 @@
 		<meta http-equiv="expires" content="0">
 		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 		<meta http-equiv="description" content="This is my page">
+		<script type="text/javascript" src="js/My97DatePicker/WdatePicker.js">
+		</script>
 		<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
@@ -48,26 +50,9 @@
 			跳舞
 			<br>
 			生日：
-			<select name="yue">
-				<option value="0">
-					请选择月份
-				</option>
-				<option value="1">
-					一月
-				</option>
-				<option value="2">
-					二月
-				</option>
-				<option value="3">
-					三月
-				</option>
-				<option value="4">
-					四月
-				</option>
-				<option value="5">
-					五月
-				</option>
-			</select>
+			<input type="text" name="bir"
+				onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+			<br>
 			<input type="submit" value="注册" />
 		</form>
 	</body>

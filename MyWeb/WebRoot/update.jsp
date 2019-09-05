@@ -18,6 +18,8 @@
 		<meta http-equiv="expires" content="0">
 		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 		<meta http-equiv="description" content="This is my page">
+		<script type="text/javascript" src="js/My97DatePicker/WdatePicker.js">
+</script>
 		<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
@@ -76,7 +78,10 @@
 			<input type="checkbox" value="tiaowu" name="like" <%=like3%> />
 			跳舞
 			<br>
-
+			生日：
+			<input type="text" name="bir" value="<%=p.getBir()%>"
+				onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+			<br>
 			<input type="submit" value="更改" />
 		</form>
 	</body>

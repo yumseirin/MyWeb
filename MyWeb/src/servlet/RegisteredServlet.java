@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import biz.PersonBiz;
 
 //import util.DateUtil;
+import util.DateUtil;
 import vo.Person;
 
 @SuppressWarnings("serial")
@@ -30,8 +31,7 @@ public class RegisteredServlet extends HttpServlet {
 		String pwd = request.getParameter("pwd");
 		String sex = request.getParameter("sex");
 		String[] likes = request.getParameterValues("like");
-		@SuppressWarnings("unused")
-		String yue = request.getParameter("yue");
+		String bir = request.getParameter("bir");
 
 		Person p = new Person();
 		p.setUname(uname);
@@ -44,17 +44,27 @@ public class RegisteredServlet extends HttpServlet {
 		}
 		p.setLikes(strs);
 		// String--->Date
-		// p.setYue(DateUtil.stringToDate(yue));
+		p.setBir(DateUtil.stringToDate(bir));
 
 		PersonBiz biz = new PersonBiz();
 		int count = biz.addPerson(p);
 
 		if (count != 0) {// 成功
-			List<Person> list = biz.selectAllPerson();
-			request.setAttribute("msg", list);
-			// 请求转发
-			request.getRequestDispatcher("success.jsp").forward(request,
-					response);
+			// 注册成功后直接进入不需重新登录
+			// List<Person> list = biz.selectAllPerson();
+			// request.setAttribute("msg", list);
+			// // 请求转发
+			// request.getRequestDispatcher("success.jsp")
+			// .forward(request, response);
+
+			// 注册成功后返回登录
+			// response.sendRedirect("login.jsp");
+
+			// 注册成功后返回登录，并提示请登录
+			request.setAttribute("msg", "请登录！");
+			request.getRequestDispatcher("login.jsp")
+					.forward(request, response);
+
 		} else {
 			// 响应定向
 			response.sendRedirect("register.jsp");
