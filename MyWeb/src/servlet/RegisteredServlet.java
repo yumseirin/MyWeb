@@ -1,8 +1,7 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.Enumeration;
-import java.util.List;
+import java.util.Enumeration; //import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,7 +12,6 @@ import com.oreilly.servlet.MultipartRequest;
 
 import biz.PersonBiz;
 
-//import util.DateUtil;
 import util.DateUtil;
 import vo.Person;
 
@@ -26,6 +24,7 @@ public class RegisteredServlet extends HttpServlet {
 		doPost(request, response);
 	}
 
+	@SuppressWarnings("unchecked")
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
@@ -69,21 +68,22 @@ public class RegisteredServlet extends HttpServlet {
 		int count = biz.addPerson(p);
 
 		if (count != 0) {// 成功
-			// 注册成功后直接进入不需重新登录
-			List<Person> list = biz.selectAllPerson();
-			request.setAttribute("msg", list);
-			request.setAttribute("tu", filename);
+			// // 注册成功后直接进入不需重新登录
+			// List<Person> list = biz.selectAllPerson();
+			// request.setAttribute("msg", list);
+			// request.setAttribute("tu", filename);
+			//			
 			// 请求转发
-			request.getRequestDispatcher("success.jsp").forward(request,
-					response);
+			// request.getRequestDispatcher("success.jsp").forward(request,
+			// response);
 
 			// //注册成功后返回登录
 			// response.sendRedirect("login.jsp");
 
-			// // 注册成功后返回登录，并提示请登录
-			// request.setAttribute("msg", "请登录！");
-			// request.getRequestDispatcher("login.jsp")
-			// .forward(request, response);
+			// 注册成功后返回登录，并提示请登录
+			request.setAttribute("msg", "请登录！");
+			request.getRequestDispatcher("login.jsp")
+					.forward(request, response);
 
 		} else {
 			// 响应定向

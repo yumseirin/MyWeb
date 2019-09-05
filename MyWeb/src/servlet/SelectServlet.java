@@ -26,6 +26,8 @@ public class SelectServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 
 		String pid = request.getParameter("pid");
+		String page = request.getParameter("page");
+
 		Person p = new Person();
 		p.setPid(Integer.parseInt(pid));
 
@@ -34,6 +36,7 @@ public class SelectServlet extends HttpServlet {
 
 		if (person != null) {
 			request.setAttribute("msg", person);
+			request.setAttribute("page", page);
 			// 请求转发
 			request.getRequestDispatcher("update.jsp").forward(request,
 					response);

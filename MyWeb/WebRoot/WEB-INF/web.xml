@@ -23,6 +23,11 @@
 		<servlet-name>DeleteServlet</servlet-name>
 		<servlet-class>servlet.DeleteServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>FenyeServlet</servlet-name>
+		<servlet-class>servlet.FenyeServlet</servlet-class>
+	</servlet>
+
 
 
 
@@ -45,6 +50,10 @@
 	<servlet-mapping>
 		<servlet-name>DeleteServlet</servlet-name>
 		<url-pattern>/delete</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>FenyeServlet</servlet-name>
+		<url-pattern>/fenye</url-pattern>
 	</servlet-mapping>
 
 	<welcome-file-list>

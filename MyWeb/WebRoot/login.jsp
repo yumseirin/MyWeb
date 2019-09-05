@@ -25,27 +25,29 @@
 	</head>
 
 	<body>
-		<h2>
-			登录
-		</h2>
-		<%
-			String msg = (String) request.getAttribute("msg");
-			if (msg != null) {
-		%>
-		<font color="red"><%=msg%></font>
-		<%
-			}
-		%>
-		<form action="login" method="post">
-			用户名：
-			<input type="text" name="uname" />
-			<br>
-			密码：
-			<input type="password" name="pwd" />
-			<br>
-			<input type="submit" value="登录" />
-			&emsp;
-			<a href="register.jsp">注册</a>
-		</form>
+		<center>
+			<h2>
+				登录
+			</h2>
+			<%
+				String msg = (String) request.getAttribute("msg");
+				if (msg != null) {
+			%>
+			<font color="red"><%=msg%></font>
+			<%
+				}
+			%>
+			<form action="login" method="post">
+				用户名：
+				<input type="text" name="uname" />
+				<br>
+				密码：
+				<input type="password" name="pwd" />
+				<br>
+				<input type="submit" value="登录" />
+				&emsp;
+				<a href="register.jsp">注册</a>
+			</form>
+		</center>
 	</body>
 </html>

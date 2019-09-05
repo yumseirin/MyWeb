@@ -114,4 +114,40 @@ public class PersonBiz {
 		}
 		return count;
 	}
+
+	/**
+	 * 查询数据库中的总条数
+	 * 
+	 * @return int
+	 */
+	public int selectZongtiao() {
+		int count = 0;
+		PersonDao dao = new PersonDao();
+		Connection conn = dao.getConnection();
+		try {
+			count = dao.selectZongtiao(conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+
+	/**
+	 * 根据开始条数，结束条数分页查询
+	 * 
+	 * @param starttiao
+	 * @param endtiao
+	 * @return List<Person>
+	 */
+	public List<Person> selectPersonByFenYe(int starttiao, int endtiao) {
+		PersonDao dao = new PersonDao();
+		Connection conn = dao.getConnection();
+		List<Person> list = null;
+		try {
+			list = dao.selectPersonByFenYe(starttiao, endtiao, conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 }

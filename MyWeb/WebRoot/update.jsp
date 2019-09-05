@@ -26,63 +26,76 @@
 	</head>
 
 	<body>
-		<h2>
-			修改
-		</h2>
-		<%
-			Person p = (Person) request.getAttribute("msg");
-			String sex = p.getSex();
-			String sex1 = "";
-			String sex2 = "";
-			if (sex.equals("nan")) {
-				sex1 = "checked";
-			}
-			if (sex.equals("nv")) {
-				sex2 = "checked";
-			}
-			String[] like = p.getLikes().split(",");
-			String like1 = "";
-			String like2 = "";
-			String like3 = "";
-			for (String l : like) {
-				if (l.equals("huihua")) {
-					like1 = "checked";
+		<center>
+			<h2>
+				修改
+			</h2>
+			<%
+				Person p = (Person) request.getAttribute("msg");
+				String sex = p.getSex();
+				String sex1 = "";
+				String sex2 = "";
+				if (sex.equals("nan")) {
+					sex1 = "checked";
 				}
-				if (l.equals("yinyue")) {
-					like2 = "checked";
+				if (sex.equals("nv")) {
+					sex2 = "checked";
 				}
-				if (l.equals("tiaowu")) {
-					like3 = "checked";
+				String[] like = p.getLikes().split(",");
+				String like1 = "";
+				String like2 = "";
+				String like3 = "";
+				for (String l : like) {
+					if (l.equals("huihua")) {
+						like1 = "checked";
+					}
+					if (l.equals("yinyue")) {
+						like2 = "checked";
+					}
+					if (l.equals("tiaowu")) {
+						like3 = "checked";
+					}
 				}
-			}
-		%>
-		<form action="update" method="post">
-			<input type="hidden" name="pid" value="<%=p.getPid()%>">
-			用户名：
-			<input type="text" name="uname" value="<%=p.getUname()%>" />
-			<br>
-			密码：
-			<input type="password" name="pwd" value="<%=p.getPwd()%>" />
-			<br>
-			性别：
-			<input type="radio" value="nan" name="sex" <%=sex1%> />
-			男
-			<input type="radio" value="nv" name="sex" <%=sex2%> />
-			女
-			<br>
-			爱好：
-			<input type="checkbox" value="huihua" name="like" <%=like1%> />
-			绘画
-			<input type="checkbox" value="yinyue" name="like" <%=like2%> />
-			音乐
-			<input type="checkbox" value="tiaowu" name="like" <%=like3%> />
-			跳舞
-			<br>
-			生日：
-			<input type="text" name="bir" value="<%=p.getBir()%>"
-				onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
-			<br>
-			<input type="submit" value="更改" />
-		</form>
+			%>
+			<form action="update?p=<%=(Integer) request.getAttribute("page")%>" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="pid" value="<%=p.getPid()%>">
+				用户名：
+				<input type="text" name="uname" value="<%=p.getUname()%>" />
+				<br>
+				密码：
+				<input type="password" name="pwd" value="<%=p.getPwd()%>" />
+				<br>
+				性别：
+				<input type="radio" value="nan" name="sex" <%=sex1%> />
+				男
+				<input type="radio" value="nv" name="sex" <%=sex2%> />
+				女
+				<br>
+				爱好：
+				<input type="checkbox" value="huihua" name="like" <%=like1%> />
+				绘画
+				<input type="checkbox" value="yinyue" name="like" <%=like2%> />
+				音乐
+				<input type="checkbox" value="tiaowu" name="like" <%=like3%> />
+				跳舞
+				<br>
+				生日：
+				<input type="text" name="bir" value="<%=p.getBir()%>"
+					onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+				<br>
+				相片：
+				<input type="file" name="pic" value="<%=p.getPicname()%>" /><br>
+				<%
+					if (p.getPicname() != null) {
+				%>
+				<img src="<%=basePath%>img/<%=p.getPicname()%>" width="400"
+					height="400">
+				<%
+					}
+				%>
+				<br>
+				<input type="submit" value="更改" />
+			</form>
+		</center>
 	</body>
 </html>
