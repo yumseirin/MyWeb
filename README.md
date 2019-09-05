@@ -1,2 +1,2 @@
-# MyWeb
-一个web项目的学习。
+# WebLearning
+一些web练习。
