@@ -9,6 +9,7 @@ public class Person {
 	private String sex;
 	private String likes;
 	private Date bir;
+	private String picname;
 
 	public int getPid() {
 		return pid;
@@ -56,6 +57,14 @@ public class Person {
 
 	public void setBir(Date bir) {
 		this.bir = bir;
+	}
+
+	public String getPicname() {
+		return picname;
+	}
+
+	public void setPicname(String picname) {
+		this.picname = picname;
 	}
 
 }

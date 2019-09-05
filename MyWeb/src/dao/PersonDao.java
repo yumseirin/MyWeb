@@ -40,13 +40,14 @@ public class PersonDao extends DataBaseFactory {
 	 * @throws SQLException
 	 */
 	public int addPerson(Person p, Connection conn) throws SQLException {
-		String sql = "insert into person values(seq_personid.nextval,?,?,?,?,?)";
+		String sql = "insert into person values(seq_personid.nextval,?,?,?,?,?,?)";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setString(1, p.getUname());
 		ps.setString(2, p.getPwd());
 		ps.setString(3, p.getSex());
 		ps.setString(4, p.getLikes());
 		ps.setDate(5, new Date(p.getBir().getTime()));
+		ps.setString(6, p.getPicname());
 		int count = ps.executeUpdate();
 		return count;
 	}
@@ -71,6 +72,7 @@ public class PersonDao extends DataBaseFactory {
 			p.setSex(rs.getString("sex"));
 			p.setLikes(rs.getString("likes"));
 			p.setBir((java.util.Date) rs.getDate("bir"));
+			p.setPicname(rs.getString("picname"));
 			list.add(p);
 		}
 		return list;

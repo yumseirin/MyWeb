@@ -27,6 +27,7 @@
 
 	<body>
 		<%
+			String tu = (String) request.getAttribute("tu");
 			List<Person> list = (List<Person>) request.getAttribute("msg");
 		%>
 		<TABLE width="80%" border="2" cellspacing="0">
@@ -48,6 +49,9 @@
 				</TD>
 				<TD>
 					生日
+				</TD>
+				<TD>
+					相片
 				</TD>
 				<TD>
 					操作
@@ -83,6 +87,18 @@
 				<TD><%=sex%></TD>
 				<TD><%=like%></TD>
 				<TD><%=p.getBir()%></TD>
+				<TD>
+					<%
+						if (p.getPicname() != null) {
+					%>
+					<img src="<%=basePath%>img/<%=p.getPicname()%>" width="300"
+						height="400">
+					<%
+						} else {
+					%>无附件<%
+						}
+					%>
+				</TD>
 				<TD>
 					<a href="select?pid=<%=p.getPid()%>">修改</a>&emsp;
 					<a href="delete?pid=<%=p.getPid()%>">删除</a>

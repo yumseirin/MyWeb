@@ -18,7 +18,7 @@
 		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 		<meta http-equiv="description" content="This is my page">
 		<script type="text/javascript" src="js/My97DatePicker/WdatePicker.js">
-		</script>
+</script>
 		<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
@@ -28,7 +28,7 @@
 		<h2>
 			注册
 		</h2>
-		<form action="register" method="post">
+		<form action="register" method="post" enctype="multipart/form-data">
 			用户名：
 			<input type="text" name="uname" />
 			<br>
@@ -52,6 +52,9 @@
 			生日：
 			<input type="text" name="bir"
 				onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+			<br>
+			相片：
+			<input type="file" name="pic" />
 			<br>
 			<input type="submit" value="注册" />
 		</form>
