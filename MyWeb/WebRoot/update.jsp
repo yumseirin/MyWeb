@@ -12,7 +12,7 @@
 	<head>
 		<base href="<%=basePath%>">
 
-		<title>My JSP 'index.jsp' starting page</title>
+		<title>My JSP 'update.jsp' starting page</title>
 		<meta http-equiv="pragma" content="no-cache">
 		<meta http-equiv="cache-control" content="no-cache">
 		<meta http-equiv="expires" content="0">
@@ -57,8 +57,10 @@
 					}
 				}
 			%>
-			<form action="update?p=<%=(Integer) request.getAttribute("page")%>" method="post" enctype="multipart/form-data">
+			<form action="update" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="pid" value="<%=p.getPid()%>">
+				<input type="hidden" name="page"
+					value="<%=request.getAttribute("page")%>">
 				用户名：
 				<input type="text" name="uname" value="<%=p.getUname()%>" />
 				<br>
@@ -84,7 +86,8 @@
 					onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
 				<br>
 				相片：
-				<input type="file" name="pic" value="<%=p.getPicname()%>" /><br>
+				<input type="file" name="pic" value="<%=p.getPicname()%>" />
+				<br>
 				<%
 					if (p.getPicname() != null) {
 				%>

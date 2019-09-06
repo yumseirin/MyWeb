@@ -41,7 +41,7 @@
 				用户名：
 				<input type="text" name="uname" />
 				<br>
-				密码：
+				密　码：
 				<input type="password" name="pwd" />
 				<br>
 				<input type="submit" value="登录" />

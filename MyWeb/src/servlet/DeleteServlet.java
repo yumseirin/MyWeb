@@ -40,7 +40,7 @@ public class DeleteServlet extends HttpServlet {
 
 			// ============分页start=======================================
 
-			int page = Integer.parseInt(request.getParameter("p"));
+			int page = Integer.parseInt(request.getParameter("page"));
 
 			// 2.如果 当前页<1 ，那么当前页=第1页
 

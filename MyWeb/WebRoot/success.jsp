@@ -103,11 +103,11 @@
 					<TD>
 						<a
 							href="select?pid=<%=p.getPid()%>&
-							p=<%=(Integer) request.getAttribute("page")%>">修改</a>
+							page=<%=(Integer) request.getAttribute("page")%>">修改</a>
 						&emsp;
 						<a
 							href="delete?pid=<%=p.getPid()%>&
-							p=<%=(Integer) request.getAttribute("page")%>">删除</a>
+							page=<%=(Integer) request.getAttribute("page")%>">删除</a>
 					</TD>
 				</TR>
 				<%
