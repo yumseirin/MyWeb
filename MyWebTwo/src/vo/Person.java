@@ -10,6 +10,7 @@ public class Person {
 	private String likes;
 	private Date bir;
 	private String picname;
+	private String call;
 
 	public int getPid() {
 		return pid;
@@ -65,6 +66,14 @@ public class Person {
 
 	public void setPicname(String picname) {
 		this.picname = picname;
+	}
+
+	public String getCall() {
+		return call;
+	}
+
+	public void setCall(String call) {
+		this.call = call;
 	}
 
 }

@@ -45,6 +45,9 @@
 				<td>
 					pwd
 				</td>
+				<td>
+					call
+				</td>
 			</tr>
 			<c:forEach items="${requestScope.list}" var="p">
 				<TR>
@@ -68,6 +71,12 @@
 							${p.pwd}错的
 						</TD>
 					</c:if>
+					<c:forTokens items="${p.call}" delims="-" step="1" varStatus="s"
+						var="c">
+						<td>
+							${s.count }:${c}
+						</td>
+					</c:forTokens>
 				</TR>
 			</c:forEach>
 		</table>
