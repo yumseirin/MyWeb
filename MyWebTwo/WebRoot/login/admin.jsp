@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -48,12 +48,26 @@
 			</tr>
 			<c:forEach items="${requestScope.list}" var="p">
 				<TR>
-					<TD>
-						${p.uname}
-					</TD>
-					<TD>
-						${p.pwd}
-					</TD>
+					<c:if test="${p.uname == 'aa'}">
+						<TD>
+							${p.uname}是坏蛋！
+						</TD>
+					</c:if>
+					<c:if test="${p.uname !='aa'}">
+						<TD>
+							${p.uname}是好蛋！
+						</TD>
+					</c:if>
+					<c:if test="${p.pwd == '123'}">
+						<TD>
+							${p.pwd}对的
+						</TD>
+					</c:if>
+					<c:if test="${p.pwd != '123'}">
+						<TD>
+							${p.pwd}错的
+						</TD>
+					</c:if>
 				</TR>
 			</c:forEach>
 		</table>
