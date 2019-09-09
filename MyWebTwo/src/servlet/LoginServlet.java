@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -44,10 +45,12 @@ public class LoginServlet extends HttpServlet {
 		p1.setUname("aa");
 		p1.setPwd("123");
 		p1.setCall("130-0010-2577");
+		p1.setBir(new Date());
 		Person p2 = new Person();
 		p2.setUname("bb");
 		p2.setPwd("456");
 		p2.setCall("188-0223-4588");
+		p2.setBir(new Date());
 
 		List<Person> list = new ArrayList<Person>();
 		list.add(p1);

@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -46,6 +47,9 @@
 					pwd
 				</td>
 				<td>
+					bir
+				</td>
+				<td colspan="3">
 					call
 				</td>
 			</tr>
@@ -71,6 +75,11 @@
 							${p.pwd}错的
 						</TD>
 					</c:if>
+					<td>
+						<fmt:formatDate value="${p.bir}" type="both"></fmt:formatDate>
+						<fmt:formatDate value="${p.bir}" type="date" />
+						<fmt:formatDate value="${p.bir}" type="time" />
+					</td>
 					<c:forTokens items="${p.call}" delims="-" step="1" varStatus="s"
 						var="c">
 						<td>
