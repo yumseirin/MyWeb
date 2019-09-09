@@ -1,6 +1,8 @@
-﻿package servlet;
+package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,8 +37,21 @@ public class LoginServlet extends HttpServlet {
 		p.setPwd(pwd);
 
 		HttpSession session = request.getSession();
-		session.setMaxInactiveInterval(5);
+		session.setMaxInactiveInterval(30);
 		session.setAttribute("person", p);
+
+		Person p1 = new Person();
+		p1.setUname("aa");
+		p1.setPwd("123");
+		Person p2 = new Person();
+		p2.setUname("bb");
+		p2.setPwd("456");
+
+		List<Person> list = new ArrayList<Person>();
+		list.add(p1);
+		list.add(p2);
+
+		request.setAttribute("list", list);
 
 		request.getRequestDispatcher("login/admin.jsp").forward(request,
 				response);

@@ -1,4 +1,5 @@
-﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -33,8 +34,29 @@
 
 	<body>
 		<a href="loginoff">退出</a>
-		<br>
-		${sessionScope.person.uname }/${sessionScope.person.pwd }
+		<%
+			///request.getAttribute("list");//JSTL+EL
+		%>
+		<table border="1">
+			<tr>
+				<td>
+					name
+				</td>
+				<td>
+					pwd
+				</td>
+			</tr>
+			<c:forEach items="${requestScope.list}" var="p">
+				<TR>
+					<TD>
+						${p.uname}
+					</TD>
+					<TD>
+						${p.pwd}
+					</TD>
+				</TR>
+			</c:forEach>
+		</table>
 		<br>
 	</body>
 </html>
