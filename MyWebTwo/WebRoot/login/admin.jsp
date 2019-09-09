@@ -6,13 +6,13 @@
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
-	HttpSession s = request.getSession();
+	/*HttpSession s = request.getSession();
 	Object obj = s.getAttribute("person");
 	if (obj == null) {
 		request.setAttribute("msg", "请重新登录");
 		request.getRequestDispatcher("../index.jsp").forward(request,
 				response);
-	}
+	}*/
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
