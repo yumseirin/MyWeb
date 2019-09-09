@@ -1,0 +1,6 @@
+INDEX VERSION 1.126+F:\GitHub\WebLearning\.metadata\.plugins\org.eclipse.jdt.core
+2921315682.index
+1241356557.index
+4218326771.index
+546868967.index
+3199667814.index
