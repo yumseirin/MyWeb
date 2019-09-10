@@ -46,6 +46,10 @@
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
 
+	<listener>
+		<listener-class>listener.CountsListener</listener-class>
+	</listener>
+
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
