@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="MyWebThree"
+  id="myeclipse.1568112311608"
+  context-root="/MyWebThree"
+  j2ee-spec="5.0"
+  archive="MyWebThree.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
