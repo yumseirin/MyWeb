@@ -1,12 +1,11 @@
 package servlet;
 
-import java.io.IOException; 
-//import java.util.ArrayList;
+import java.io.IOException; //import java.util.ArrayList;
 //import java.util.Date;
 //import java.util.List;
 
-import javax.servlet.ServletException;
-//import javax.servlet.http.Cookie;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException; //import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -65,6 +64,20 @@ public class LoginServlet extends HttpServlet {
 		// c2.setMaxAge(30);
 		// response.addCookie(c1);
 		// response.addCookie(c2);
+
+		// =============上下文计数===================
+		ServletContext sc = this.getServletContext();
+		// 有没有count
+		Object obj = sc.getAttribute("count");
+		if (obj == null) {
+			// 没有
+			sc.setAttribute("count", 1);
+		} else {
+			// 有
+			int count = Integer.parseInt(obj.toString());
+			count++;
+			sc.setAttribute("count", count);
+		}
 
 		request.getRequestDispatcher("login/admin.jsp").forward(request,
 				response);

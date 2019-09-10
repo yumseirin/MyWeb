@@ -90,5 +90,8 @@
 			</c:forEach>
 		</table>
 		<br>
+		您是第<%=(Integer) application.getAttribute("count")%>个访问者
+		<br>
+		您是第${applicationScope.count }个访问者<br>
 	</body>
 </html>
