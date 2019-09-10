@@ -1,5 +1,4 @@
-<%@ page language="java"
-	import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -26,6 +25,11 @@
 	<body>
 		欢迎，${sessionScope.person.uname }
 		<br />
-		<a href="welcome"> 进入个人主页</a>
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<center><h1><a href="welcome" > 进入个人主页</a></h1></center>
 	</body>
 </html>
