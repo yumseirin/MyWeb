@@ -34,64 +34,72 @@
 	</head>
 
 	<body>
-		<a href="loginoff">退出</a>
+		<div align="right">
+			<!--  欢迎您，${sessionScope.person.uname }！您是第<%=(Integer) application.getAttribute("count")%>个访问者
+				  <br>
+			-->
+			欢迎您，${sessionScope.person.uname }！您是第${applicationScope.count }个访问者
+			<br>
+		</div>
+		<p align="right">
+			<a href="loginoff">退出</a>
+		</p>
 		<%
 			///request.getAttribute("list");//JSTL+EL
 		%>
-		<table border="1">
-			<tr>
-				<td>
-					name
-				</td>
-				<td>
-					pwd
-				</td>
-				<td>
-					bir
-				</td>
-				<td colspan="3">
-					call
-				</td>
-			</tr>
-			<c:forEach items="${requestScope.list}" var="p">
-				<TR>
-					<c:if test="${p.uname == 'aa'}">
-						<TD>
-							${p.uname}是坏蛋！
-						</TD>
-					</c:if>
-					<c:if test="${p.uname !='aa'}">
-						<TD>
-							${p.uname}是好蛋！
-						</TD>
-					</c:if>
-					<c:if test="${p.pwd == '123'}">
-						<TD>
-							${p.pwd}对的
-						</TD>
-					</c:if>
-					<c:if test="${p.pwd != '123'}">
-						<TD>
-							${p.pwd}错的
-						</TD>
-					</c:if>
+		<center>
+			<table border="1">
+				<tr>
 					<td>
-						<fmt:formatDate value="${p.bir}" type="both"></fmt:formatDate>
-						<fmt:formatDate value="${p.bir}" type="date" />
-						<fmt:formatDate value="${p.bir}" type="time" />
+						name
 					</td>
-					<c:forTokens items="${p.call}" delims="-" step="1" varStatus="s"
-						var="c">
+					<td>
+						pwd
+					</td>
+					<td>
+						bir
+					</td>
+					<td colspan="3">
+						call
+					</td>
+				</tr>
+				<c:forEach items="${requestScope.list}" var="p">
+					<TR>
+						<c:if test="${p.uname == 'aa'}">
+							<TD>
+								${p.uname}是坏蛋！
+							</TD>
+						</c:if>
+						<c:if test="${p.uname !='aa'}">
+							<TD>
+								${p.uname}是好蛋！
+							</TD>
+						</c:if>
+						<c:if test="${p.pwd == '123'}">
+							<TD>
+								${p.pwd}对的
+							</TD>
+						</c:if>
+						<c:if test="${p.pwd != '123'}">
+							<TD>
+								${p.pwd}错的
+							</TD>
+						</c:if>
 						<td>
-							${s.count }:${c}
+							<fmt:formatDate value="${p.bir}" type="both"></fmt:formatDate>
+							<fmt:formatDate value="${p.bir}" type="date" />
+							<fmt:formatDate value="${p.bir}" type="time" />
 						</td>
-					</c:forTokens>
-				</TR>
-			</c:forEach>
-		</table>
+						<c:forTokens items="${p.call}" delims="-" step="1" varStatus="s"
+							var="c">
+							<td>
+								${s.count }:${c}
+							</td>
+						</c:forTokens>
+					</TR>
+				</c:forEach>
+			</table>
+		</center>
 		<br>
-		您是第<%=(Integer) application.getAttribute("count")%>个访问者
-		<br>
-		您是第${applicationScope.count }个访问者<br>
 	</body>
 </html>

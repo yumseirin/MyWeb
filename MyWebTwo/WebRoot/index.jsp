@@ -4,29 +4,29 @@
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
-/*
-	//从cookie里拿用户名和密码自动进行登录
-	String username = null;
-	String password = null;
+	/*
+	 //从cookie里拿用户名和密码自动进行登录
+	 String username = null;
+	 String password = null;
 
-	Cookie[] cookies = request.getCookies();
-	if (cookies != null) {
-		for (Cookie cookie : cookies) {
-			if (cookie.getName().equals("uname")) {
-				username = cookie.getValue();
-			}
-			if (cookie.getName().equals("pwd")) {
-				username = cookie.getValue();
-			}
-		}
-	}
+	 Cookie[] cookies = request.getCookies();
+	 if (cookies != null) {
+	 for (Cookie cookie : cookies) {
+	 if (cookie.getName().equals("uname")) {
+	 username = cookie.getValue();
+	 }
+	 if (cookie.getName().equals("pwd")) {
+	 username = cookie.getValue();
+	 }
+	 }
+	 }
 
-	if (username != null && password != null) {
-		request.getRequestDispatcher(
-				"login?uname=" + username + "&pwd=" + password)
-				.forward(request, response);
-	}
-*/
+	 if (username != null && password != null) {
+	 request.getRequestDispatcher(
+	 "login?uname=" + username + "&pwd=" + password)
+	 .forward(request, response);
+	 }
+	 */
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -46,16 +46,18 @@
 	</head>
 
 	<body>
-		${requestScope.msg }
-		<form action="login" method="post">
-			用户名：
-			<input type="text" name="uname" />
-			<br />
-			密码：
-			<input type="password" name="pwd" />
+		<center>
+			${requestScope.msg }
+			<form action="login" method="post">
+				用户名:
+				<input type="text" name="uname" />
+				<br />
+				密&emsp;码:
+				<input type="password" name="pwd" />
 
-			<br />
-			<input type="submit" value="登录">
-		</form>
+				<br />
+				<input type="submit" value="登录">
+			</form>
+		</center>
 	</body>
 </html>
