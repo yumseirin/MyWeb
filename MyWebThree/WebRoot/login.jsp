@@ -65,6 +65,7 @@
 			<h1>
 				登录
 			</h1>
+			${requestScope.msg}
 			<form action="login" method="post">
 				<br />
 				用户名：
