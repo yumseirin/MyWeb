@@ -29,11 +29,11 @@
 
 	<filter-mapping>
 		<filter-name>LoginFilter</filter-name>
-		<url-pattern>/one/*.jsp</url-pattern>
+		<url-pattern>/one/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
-	
+
 	<filter>
 		<filter-name>CharacterFilter</filter-name>
 		<filter-class>filter.CharacterFilter</filter-class>
@@ -45,7 +45,11 @@
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
-	
+
+	<listener>
+		<listener-class>listener.CountsListener</listener-class>
+	</listener>
+
 	<welcome-file-list>
 		<welcome-file>login.jsp</welcome-file>
 	</welcome-file-list>
