@@ -20,8 +20,8 @@ public class LoginOffServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=utf-8");
+		// request.setCharacterEncoding("utf-8");
+		// response.setContentType("text/html;charset=utf-8");
 
 		// ================验证成功后，才把用户的信息放在会话============
 
