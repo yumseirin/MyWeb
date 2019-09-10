@@ -5,6 +5,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -60,7 +61,7 @@ public class LoginServlet extends HttpServlet {
 		list.add(p);
 		list.add(p2);
 		list.add(p3);
-		
+
 		HttpSession session = request.getSession();
 		session.setAttribute("list", list);
 		session.setAttribute("person", p);
@@ -81,6 +82,20 @@ public class LoginServlet extends HttpServlet {
 		response.addCookie(cookie2);
 		response.addCookie(cookie3);
 		response.addCookie(cookie4);
+
+		// =============上下文计数===================
+		ServletContext sc = this.getServletContext();
+		// 有没有count
+		Object obj = sc.getAttribute("count");
+		if (obj == null) {
+			// 没有
+			sc.setAttribute("count", 1);
+		} else {
+			// 有
+			int count = Integer.parseInt(obj.toString());
+			count++;
+			sc.setAttribute("count", count);
+		}
 
 		request.getRequestDispatcher("one/index.jsp")
 				.forward(request, response);

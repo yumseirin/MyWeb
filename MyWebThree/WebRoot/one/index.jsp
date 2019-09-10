@@ -23,13 +23,17 @@
 	</head>
 
 	<body>
-		欢迎，${sessionScope.person.uname }
+		欢迎您，${sessionScope.person.uname }！您是第${applicationScope.count }个访问者!
 		<br />
 		<br />
 		<br />
 		<br />
 		<br />
 		<br />
-		<center><h1><a href="welcome" > 进入个人主页</a></h1></center>
+		<center>
+			<h1>
+				<a href="welcome"> 进入个人主页</a>
+			</h1>
+		</center>
 	</body>
 </html>
