@@ -22,6 +22,19 @@
     <servlet-name>LoginOffServlet</servlet-name>
     <url-pattern>/loginoff</url-pattern>
   </servlet-mapping>
+  
+	<filter>
+		<filter-name>LoginFilter</filter-name>
+		<filter-class>filter.LoginFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>LoginFilter</filter-name>
+		<url-pattern>/login/admin.jsp</url-pattern> 
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+  
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>

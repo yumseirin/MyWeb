@@ -1,18 +1,18 @@
 package servlet;
 
-import java.io.IOException;
+import java.io.IOException; 
 //import java.util.ArrayList;
 //import java.util.Date;
 //import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
+//import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-//import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSession;
 
-//import vo.Person;
+import vo.Person;
 
 @SuppressWarnings("serial")
 public class LoginServlet extends HttpServlet {
@@ -34,13 +34,13 @@ public class LoginServlet extends HttpServlet {
 
 		// ================验证成功后，才把用户的信息放在会话============
 
-		// Person p = new Person();
-		// p.setUname(uname);
-		// p.setPwd(pwd);
+		Person p = new Person();
+		p.setUname(uname);
+		p.setPwd(pwd);
 		//
-		// HttpSession session = request.getSession();
-		// session.setMaxInactiveInterval(30);
-		// session.setAttribute("person", p);
+		HttpSession session = request.getSession();
+		session.setMaxInactiveInterval(60);
+		session.setAttribute("person", p);
 		//
 		// Person p1 = new Person();
 		// p1.setUname("aa");
@@ -59,12 +59,12 @@ public class LoginServlet extends HttpServlet {
 		//
 		// request.setAttribute("list", list);
 
-		Cookie c1 = new Cookie("uname", uname);
-		Cookie c2 = new Cookie("pwd", pwd);
-		c1.setMaxAge(30);
-		c2.setMaxAge(30);
-		response.addCookie(c1);
-		response.addCookie(c2);
+		// Cookie c1 = new Cookie("uname", uname);
+		// Cookie c2 = new Cookie("pwd", pwd);
+		// c1.setMaxAge(30);
+		// c2.setMaxAge(30);
+		// response.addCookie(c1);
+		// response.addCookie(c2);
 
 		request.getRequestDispatcher("login/admin.jsp").forward(request,
 				response);
