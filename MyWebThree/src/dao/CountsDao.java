@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import util.DataBaseFactory;
+import util.Log;
 
 public class CountsDao extends DataBaseFactory {
 
@@ -18,11 +19,13 @@ public class CountsDao extends DataBaseFactory {
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			Log.logger.error(e.toString());
 		} finally {
 			try {
 				conn.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
+				Log.logger.error(e.toString());
 			}
 		}
 	}
@@ -39,11 +42,13 @@ public class CountsDao extends DataBaseFactory {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			Log.logger.error(e.toString());
 		} finally {
 			try {
 				conn.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
+				Log.logger.error(e.toString());
 			}
 		}
 		return count;

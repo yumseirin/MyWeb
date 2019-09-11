@@ -18,6 +18,7 @@ public class DateUtil {
 			date = sdf.parse(str);
 		} catch (ParseException e) {
 			e.printStackTrace();
+			Log.logger.error(e.toString());
 		}
 		return date;
 	}

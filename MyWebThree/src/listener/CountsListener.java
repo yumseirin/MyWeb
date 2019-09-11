@@ -4,6 +4,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import util.Log;
+
 import dao.CountsDao;
 
 public class CountsListener implements ServletContextListener {
@@ -13,6 +15,7 @@ public class CountsListener implements ServletContextListener {
 	 */
 	public void contextDestroyed(ServletContextEvent arg0) {
 
+		Log.logger.info("关闭tomcat!");
 		ServletContext sc = arg0.getServletContext();
 		Object obj = sc.getAttribute("count");
 		if (obj != null) {
@@ -27,6 +30,7 @@ public class CountsListener implements ServletContextListener {
 	 */
 	public void contextInitialized(ServletContextEvent arg0) {
 
+		Log.logger.info("启动tomcat!");
 		CountsDao dao = new CountsDao();
 		arg0.getServletContext().setAttribute("count", dao.selectCounts());
 	}
