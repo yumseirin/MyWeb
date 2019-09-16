@@ -26,7 +26,7 @@ public class DepartmentDao extends DataBaseFactory {
 		try {
 			ps.setString(1, departmentname);
 			ps.setInt(2, Integer.parseInt(CommonConstant.DEPARTMENTSTATUS1));
-			return exceuteUpdate(ps);
+			return executeUpdate(ps);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -48,7 +48,7 @@ public class DepartmentDao extends DataBaseFactory {
 		try {
 			ps.setInt(1, Integer.parseInt(CommonConstant.DEPARTMENTSTATUS2));
 			ps.setInt(2, departmentid);
-			return exceuteUpdate(ps);
+			return executeUpdate(ps);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -71,7 +71,7 @@ public class DepartmentDao extends DataBaseFactory {
 		try {
 			ps.setString(1, departmentname);
 			ps.setInt(2, departmentid);
-			return exceuteUpdate(ps);
+			return executeUpdate(ps);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -90,7 +90,7 @@ public class DepartmentDao extends DataBaseFactory {
 		String sql = "select * from department";
 		Connection conn = getConnection();
 		PreparedStatement ps = getPS(conn, sql);
-		ResultSet rs = exceuteQuery(ps);
+		ResultSet rs = executeQuery(ps);
 		try {
 			while (rs.next()) {
 				Department dep = new Department();

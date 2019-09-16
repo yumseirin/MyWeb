@@ -58,7 +58,7 @@ public class DataBaseFactory {
 	 * @param ps PreparedStatement对象
 	 * @return 返回ResultSet结果集
 	 */
-	public static ResultSet exceuteQuery(PreparedStatement ps) {
+	public static ResultSet executeQuery(PreparedStatement ps) {
 		ResultSet rs = null;
 
 		try {
@@ -75,7 +75,7 @@ public class DataBaseFactory {
 	 * @param ps PreparedStatement对象
 	 * @return int 返回更新条数
 	 */
-	public static int exceuteUpdate(PreparedStatement ps) {
+	public static int executeUpdate(PreparedStatement ps) {
 		int len = 0;
 		try {
 			len = ps.executeUpdate();

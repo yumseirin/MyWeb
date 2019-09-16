@@ -15,7 +15,7 @@ public class Meeting {
 	private Timestamp reservetime; // 会议预定时间
 	private Integer roomid; // 会议室id
 	private String meetingremark; // 会议说明
-	private String meetinguserid; // 会议参加者
+	private Integer meetinguserid; // 会议参加者id
 	private Integer reserveuserid; // 会讲义预定人的id
 	private Integer meetingstatus; // 会议状态
 	private Timestamp canceledtime; // 取消时间
@@ -85,11 +85,11 @@ public class Meeting {
 		this.meetingremark = meetingremark;
 	}
 
-	public String getMeetinguserid() {
+	public Integer getMeetinguserid() {
 		return meetinguserid;
 	}
 
-	public void setMeetinguserid(String meetinguserid) {
+	public void setMeetinguserid(Integer meetinguserid) {
 		this.meetinguserid = meetinguserid;
 	}
 

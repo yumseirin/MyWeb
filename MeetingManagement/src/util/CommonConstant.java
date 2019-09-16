@@ -10,15 +10,15 @@ public class CommonConstant {
 	/**
 	 * 人员角色
 	 */
-	public static final String ROLEMANAGE="0";   //管理员
-	public static final String ROLEEMPLOYEE="1"; //员工
+	public static final String ROLEMANAGE="1";   //管理员
+	public static final String ROLEEMPLOYEE="2"; //员工
 	
 	/**
 	 * 人员状态
 	 *  
 	 */
 	public static final String STATUS1="0"; //正在审核，登录失败
-	public static final String STATUS2="1"; //登录成功
+	public static final String STATUS2="1"; //审核通过，登录成功
 	public static final String STATUS3="2"; //审核未通过，登录失败
 	public static final String STATUS4="3"; //用户名或密码错误，登录失败
 	public static final String STATUS5="4"; //关闭
