@@ -41,7 +41,7 @@ public class DepartmentDao extends DataBaseFactory {
 	 * @param id
 	 * @return 是否删除成功，失败为-1，成功为返回更新条数
 	 */
-	public int deleteDepartmentById(Integer departmentid) {
+	public int deleteDepartmentById(int departmentid) {
 		String sql = "update department set departmentstatus=?  where departmentid=?";
 		Connection conn = getConnection();
 		PreparedStatement ps = getPS(conn, sql);
@@ -64,7 +64,7 @@ public class DepartmentDao extends DataBaseFactory {
 	 * @param id
 	 * @return int 是否更改成功，失败为-1，成功为返回更新条数
 	 */
-	public int updateDepartmentById(String departmentname, Integer departmentid) {
+	public int updateDepartmentById(String departmentname, int departmentid) {
 		String sql = "update department set departmentname=? where departmentid=?";
 		Connection conn = getConnection();
 		PreparedStatement ps = getPS(conn, sql);

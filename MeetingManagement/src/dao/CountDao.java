@@ -20,7 +20,7 @@ public class CountDao extends DataBaseFactory {
 		PreparedStatement ps = getPS(conn, sql);
 		try {
 			ps.setInt(1, count);
-			exceuteUpdate(ps);
+			executeUpdate(ps);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -38,7 +38,7 @@ public class CountDao extends DataBaseFactory {
 		String sql = "select visitcount from counter where counterid = 1";
 		Connection conn = getConnection();
 		PreparedStatement ps = getPS(conn, sql);
-		ResultSet rs = exceuteQuery(ps);
+		ResultSet rs = executeQuery(ps);
 		try {
 			if (rs.next()) {
 				count = rs.getInt("visitcount");
