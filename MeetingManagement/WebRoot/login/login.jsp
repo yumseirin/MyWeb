@@ -31,7 +31,7 @@
 				欢迎访问Cool-Meeting会议管理系统
 			</div>
 		</div>
-		<form action="index.jsp" method="post">
+		<form action="login" method="post">
 			<fieldset>
 				<legend>
 					登录信息
@@ -46,7 +46,7 @@
 					</tr>
 					<tr>
 						<td align="center">
-							账号名:
+							用户名:
 						</td>
 						<td align="left">
 							<input type="text" name="username" id="username" />
@@ -69,8 +69,7 @@
 					<tr align="center">
 						<td></td>
 						<td align="left">
-							<input type="submit" value="登录" class="clickbutton"
-								onclick="window.location.href='index.jsp';" />
+							<input type="submit" value="登录" class="clickbutton" />
 							<input type="button" value="注册" class="clickbutton"
 								onclick="window.location.href='register.jsp';" />
 						</td>

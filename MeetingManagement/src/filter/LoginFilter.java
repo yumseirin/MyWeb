@@ -27,10 +27,9 @@ public class LoginFilter implements Filter {
 			FilterChain arg2) throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) arg0;
 		String servletPath = request.getServletPath();
-		if ("/login.jsp".equals(servletPath)
-				|| "/register.jsp".equals(servletPath)
+		if ("/login/login.jsp".equals(servletPath)
+				|| "/login/register.jsp".equals(servletPath)
 				|| "/register".equals(servletPath)
-				|| "/doreg".equals(servletPath) 
 				|| "/login".equals(servletPath)
 				|| servletPath.contains("/images/")
 				|| servletPath.contains("/js/")
@@ -39,10 +38,10 @@ public class LoginFilter implements Filter {
 			arg2.doFilter(request, arg1);
 		} else {
 			HttpSession session = request.getSession();
-			Object obj = session.getAttribute("person");
+			Object obj = session.getAttribute("loginedEmployee");
 			if (obj == null) {
 				request.setAttribute("msg", "请重新登录");
-				request.getRequestDispatcher("login.jsp").forward(arg0, arg1);
+				request.getRequestDispatcher("/login/login.jsp").forward(arg0, arg1);
 			} else {
 				arg2.doFilter(arg0, arg1);
 			}

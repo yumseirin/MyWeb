@@ -1,7 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -22,20 +24,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	</head>
 
-	<frameset rows="100,*,80" cols="*" framespacing="0" frameborder="no"
+	<frameset rows="100,*,100" cols="*" framespacing="0" frameborder="no"
 		border="0">
-		<frame src="top.jsp" name="topFrame" scrolling="No"
+		<frame src="layout/top.jsp" name="topFrame" scrolling="No"
 			noresize="noresize" id="topFrame" marginwidth="0" marginheight="0"
 			frameborder="0" />
 
 		<frameset cols="260,*" id="frame">
-			<frame src="left.jsp" name="leftFrame" noresize="noresize"
-				marginwidth="50px" marginheight="0" frameborder="0"
-				scrolling="No"  />
-			<frame src="mymeetingtongzhi.jsp" name="main" 
-				 frameborder="0" scrolling="no"  />
+			<frame src="layout/left.jsp" name="leftFrame" noresize="noresize"
+				marginwidth="50px" marginheight="0" frameborder="0" scrolling="No" />
+			<frame src="personalCenter/notifications.jsp" id="main" name="main" frameborder="0"
+				scrolling="no" />
 		</frameset>
-		<frame src="bottom.jsp" name="bottomFrame" scrolling="No"
+		<frame src="layout/bottom.jsp" name="bottomFrame" scrolling="No"
 			noresize="noresize" id="bottomFrame" marginwidth="0" marginheight="0" />
 
 	</frameset>

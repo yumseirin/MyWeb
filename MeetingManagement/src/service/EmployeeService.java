@@ -19,6 +19,8 @@ public class EmployeeService {
 	 *         0表示正在审核，登录失败，1表示审核通过，登录成功，2表示审核未通过，3用户名或密码错误，登录失败，4关闭，登录失败
 	 */
 	public int login(String username, String password) {
+		
+		/*
 		int flag = Integer.parseInt(CommonConstant.STATUS4);//3登录失败
 		Employee employee = dao.login(username, password);
 		if (employee != null) {
@@ -36,8 +38,21 @@ public class EmployeeService {
 			if (status != null && status.equals(CommonConstant.STATUS3)) {
 				flag = Integer.parseInt(CommonConstant.STATUS3);
 			}
+			//String STATUS5="4"; //账号关闭
+			if (status != null && status.equals(CommonConstant.STATUS5)) {
+				flag = Integer.parseInt(CommonConstant.STATUS5);
+			}
 		}
 		return flag;
+		*/
+		int flag = Integer.parseInt(CommonConstant.STATUS4);//3登录失败
+		Employee employee = dao.login(username, password);
+        if (employee == null) {
+            return flag;
+        }else{
+            this.loginedEmployee = employee;
+            return employee.getStatus();
+        }
 	}
 	
 	/**
