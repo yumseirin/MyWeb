@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="ajaxOne"
+  id="myeclipse.1568872708285"
+  context-root="/ajaxOne"
+  j2ee-spec="5.0"
+  archive="ajaxOne.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
