@@ -6,7 +6,32 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-
+<script type="text/javascript">
+//将待选区员工 移至 选择区
+function yzxq() {
+	var selemp = document.getElementById("selEmployees").selectedOptions;
+	var eids = document.getElementById("selSelectedEmployees");
+	aa: for ( var i = 0; i < selemp.length; i++) {
+		for ( var j = 0; j < eids.length; j++) {
+			if (selemp[i].value == eids[j].value) {
+				continue aa;
+			}
+		}
+		var ops = document.createElement("option");
+		ops.value = selemp[i].value;
+		ops.innerHTML = selemp[i].innerHTML;
+		eids.appendChild(ops);
+	}
+}
+//移除选择区
+function yichu() {
+	var eids = document.getElementById("selSelectedEmployees");
+	var eidoption = document.getElementById("selSelectedEmployees").selectedOptions;
+	for ( var d in eidoption) {
+		eids.removeChild(eidoption[0]);
+	}
+}
+</script>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
@@ -175,8 +200,10 @@
 								</div>
 								<div id="divoperator">
 
-									<input type="button" class="clickbutton" value="&gt;" />
-									<input type="button" class="clickbutton" value="&lt;" />
+									<input type="button" class="clickbutton" value="&gt;"
+										onclick="yzxq()" />
+									<input type="button" class="clickbutton" value="&lt;"
+										onclick="yichu()" />
 								</div>
 								<div id="divto">
 									<select id="selSelectedEmployees" name="selSelectedEmployees"

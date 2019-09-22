@@ -52,7 +52,7 @@ public class EmployeeDao extends DataBaseFactory {
 	 * String ROLEEMPLOYEE="2"; //员工
 	 * 
 	 * @param employee
-	 * @return int 返回-1用户名被占用注册失败，返回0不明原因注册失败，返回大于0注册成功
+	 * @return int 返回-1用户名被占用注册失败，返回0不明原因注册失败，返回1注册成功
 	 */
 	public int register(Employee employee) {
 		if (isUsernameExists(employee.getUsername())) {

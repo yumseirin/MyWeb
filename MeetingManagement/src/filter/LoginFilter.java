@@ -31,6 +31,8 @@ public class LoginFilter implements Filter {
 				|| "/login/register.jsp".equals(servletPath)
 				|| "/register".equals(servletPath)
 				|| "/login".equals(servletPath)
+				|| "/RegGetDepServlet".equals(servletPath)
+				|| servletPath.contains("/login/")
 				|| servletPath.contains("/images/")
 				|| servletPath.contains("/js/")
 				|| servletPath.contains("/My97DatePicker/")

@@ -102,7 +102,7 @@ public class EmployeeService {
 	 * 
 	 * @param status
 	 * @param employeeid
-	 * @return int 是否更改成功，失败为-1，成功为返回更新条数
+	 * @return int 是否更改成功，失败为-1，成功为返回更新条数1
 	 */
 	public int updateEmpStatusById(int status, int employeeid) {
 		return dao.updateEmpStatusById(status, employeeid);

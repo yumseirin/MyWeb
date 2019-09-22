@@ -39,7 +39,7 @@
 						姓名
 					</th>
 					<th>
-						账号名
+						用户名
 					</th>
 					<th>
 						联系电话
@@ -52,26 +52,28 @@
 					</th>
 				</tr>
 
-				<tr>
-					<td>
-						张三
-					</td>
-					<td>
-						zhangsan
-					</td>
-					<td>
-						138445695221
-					</td>
-					<td>
-						123456@qq.com
-					</td>
-					<td>
-						<input type="button" class="clickbutton" value="通过"
-							onclick="window.location.href='EmployeeShenpiServlet?code=yes&employeeid=${employeelist.employeeid}'" />
-						<input type="button" class="clickbutton" value="删除"
-							onclick="window.location.href='EmployeeShenpiServlet?code=no&employeeid=${employeelist.employeeid}'" />
-					</td>
-				</tr>
+				<c:forEach items="${list}" var="emp">
+					<tr>
+						<td>
+							${emp.realname}
+						</td>
+						<td>
+							${emp.username}
+						</td>
+						<td>
+							${emp.phone}
+						</td>
+						<td>
+							${emp.email}
+						</td>
+						<td>
+							<a class="clickbutton"
+								href="<%=basePath%>UpdateEmpStatusServlet?status=1&empid=${emp.employeeid}">通过</a>
+							<a class="clickbutton"
+								href="<%=basePath%>UpdateEmpStatusServlet?status=2&empid=${emp.employeeid}">不通过</a>
+						</td>
+					</tr>
+				</c:forEach>
 			</table>
 		</div>
 	</body>

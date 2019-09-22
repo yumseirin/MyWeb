@@ -25,7 +25,7 @@
 	</head>
 
 	<frameset rows="100,*,100" cols="*" framespacing="0" frameborder="no"
-		border="0">
+		border="0" >
 		<frame src="layout/top.jsp" name="topFrame" scrolling="No"
 			noresize="noresize" id="topFrame" marginwidth="0" marginheight="0"
 			frameborder="0" />

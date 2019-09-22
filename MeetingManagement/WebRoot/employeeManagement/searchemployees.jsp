@@ -102,9 +102,9 @@
 				<div class="pager-header">
 					<div class="header-info">
 						共
-						<span class="info-number">100</span>条结果， 分成
-						<span class="info-number">10</span>页显示， 当前第
-						<span class="info-number">1</span>页
+						<span class="info-number">${totalCount}</span>条结果， 分成
+						<span class="info-number">${totalPage}</span>页显示， 当前第
+						<span class="info-number">${page}</span>页
 					</div>
 					<div class="header-nav">
 
@@ -125,7 +125,7 @@
 						姓名
 					</th>
 					<th>
-						账号名
+						用户名
 					</th>
 					<th>
 						联系电话
@@ -137,29 +137,32 @@
 						操作
 					</th>
 				</tr>
-
-				<tr>
-					<td>
-						张三
-					</td>
-					<td>
-						zhangsan
-					</td>
-					<td>
-						12345648978
-					</td>
-					<td>
-						789@qq.com
-					</td>
-					<td>
-
-						帐号已关闭
-						<a class="">关闭账号</a>(二选一)
-
-					</td>
-				</tr>
-
-
+				<c:forEach items="${list}" var="emp">
+					<tr>
+						<td>
+							${emp.employeename}
+						</td>
+						<td>
+							${emp.username}
+						</td>
+						<td>
+							${emp.phone}
+						</td>
+						<td>
+							${emp.email}
+						</td>
+						<td>
+							<form method="post" action="/meeting/serachemp">
+								<input type="hidden" name="realname" value="${realname}">
+								<input type="hidden" name="username" value="${username}">
+								<input type="hidden" name="status" value="${status}">
+								<input type="hidden" name="updateStatus" value="-1">
+								<input type="hidden" name="empid" value="${emp.employeeid}">
+								<input class="clickbutton" value="关闭账号" type="submit"></input>
+							</form>
+						</td>
+					</tr>
+				</c:forEach>
 			</table>
 		</div>
 	</body>

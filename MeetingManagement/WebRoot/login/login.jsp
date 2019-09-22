@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -19,6 +20,12 @@
 		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 		<meta http-equiv="description" content="This is my page">
 		<link rel="stylesheet" href="styles/common.css" />
+		<script src="js/jquery-1.8.3.min.js" type="text/javascript">
+</script>
+		<script type="text/javascript">
+if (window != top)
+	top.location.href = location.href;
+</script>
 
 	</head>
 
@@ -38,6 +45,13 @@
 				</legend>
 				<br>
 				<table class="formtable" style="width: 50%" border="0">
+					<c:if test="${error!=null}">
+						<tr>
+							<td colspan="2">
+								<font color="red">${error}</font>
+							</td>
+						</tr>
+					</c:if>
 					<tr>
 						<td align="center">
 						</td>
@@ -71,7 +85,7 @@
 						<td align="left">
 							<input type="submit" value="登录" class="clickbutton" />
 							<input type="button" value="注册" class="clickbutton"
-								onclick="window.location.href='register.jsp';" />
+								onclick="window.location.href='<%=basePath%>login/register.jsp'" />
 						</td>
 					</tr>
 				</table>
@@ -80,7 +94,7 @@
 		<div class="page-footer">
 			<hr />
 			更多问题，欢迎联系
-			<a href="mailto:webmaster@eeg.com">管理员</a>
+			<a href="mailto:seirin@seirin.com">管理员</a>
 			<img src="images/footer.png" alt="CoolMeeting" />
 		</div>
 	</body>

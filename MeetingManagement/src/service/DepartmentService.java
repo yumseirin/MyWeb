@@ -48,4 +48,22 @@ public class DepartmentService {
 	public List<Department> selectAllDepartment() {
 		return dao.selectAllDepartment();
 	}
+	
+	/**
+	 * 查询所有可用部门信息
+	 * String DEPARTMENTSTATUS1="0"; //有效
+	 * @return List<Department> 返回数据集合list
+	 */
+	public List<Department> selectAllUsableDepartment() {
+		return dao.selectAllUsableDepartment();
+	}
+	
+	/**
+	 * 根据部门Id查询该部门信息
+	 * 
+	 * @return Department
+	 */
+	public Department selectDepartmentById(int id) {
+		return dao.selectDepartmentById(id);
+	}
 }

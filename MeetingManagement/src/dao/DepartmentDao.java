@@ -102,8 +102,65 @@ public class DepartmentDao extends DataBaseFactory {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			close(ps, conn);
+			close(rs,ps, conn);
 		}
 		return list;
+	}
+	
+	/**
+	 * 查询所有可用部门信息
+	 * String DEPARTMENTSTATUS1="0"; //有效
+	 * @return List<Department> 返回数据集合list
+	 */
+	public List<Department> selectAllUsableDepartment() {
+		List<Department> list = new ArrayList<Department>();
+		String sql = "select * from department where departmentstatus=?";
+		Connection conn = getConnection();
+		PreparedStatement ps = getPS(conn, sql);
+		
+		ResultSet rs = null;
+		try {
+			ps.setInt(1, Integer.parseInt(CommonConstant.DEPARTMENTSTATUS1));
+			rs = executeQuery(ps);
+			while (rs.next()) {
+				Department dep = new Department();
+				dep.setDepartmentid(rs.getInt("departmentid"));
+				dep.setDepartmentname(rs.getString("departmentname"));
+				dep.setDepartmentstatus(rs.getInt("departmentstatus"));
+				list.add(dep);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs,ps, conn);
+		}
+		return list;
+	}
+	
+	/**
+	 * 根据部门Id查询该部门信息
+	 * 
+	 * @return Department
+	 */
+	public Department selectDepartmentById(int id) {
+		Department dep = new Department();
+		String sql = "select * from department where departmentid=?";
+		Connection conn = getConnection();
+		PreparedStatement ps = getPS(conn, sql);
+		ResultSet rs = null;
+		try {
+			ps.setInt(1, id);
+			rs = executeQuery(ps);
+			while (rs.next()) {
+				dep.setDepartmentid(rs.getInt("departmentid"));
+				dep.setDepartmentname(rs.getString("departmentname"));
+				dep.setDepartmentstatus(rs.getInt("departmentstatus"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs,ps, conn);
+		}
+		return dep;
 	}
 }

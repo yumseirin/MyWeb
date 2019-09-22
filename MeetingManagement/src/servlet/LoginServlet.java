@@ -23,6 +23,7 @@ public class LoginServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setContentType("text/html;charset=utf-8");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		int flag = employeeService.login(username, password);
