@@ -8,7 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import service.DepartmentService;
-
+/**
+ * 添加部门
+ * @author seirin
+ *
+ */
 @SuppressWarnings("serial")
 public class AddDepServlet extends HttpServlet {
 	private DepartmentService departmentService = new DepartmentService();

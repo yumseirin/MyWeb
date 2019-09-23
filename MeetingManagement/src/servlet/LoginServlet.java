@@ -10,7 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.EmployeeService;
 import util.CommonConstant;
-
+/**
+ * 登录
+ * @author seirin
+ *
+ */
 @SuppressWarnings("serial")
 public class LoginServlet extends HttpServlet {
 

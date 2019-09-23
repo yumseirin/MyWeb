@@ -8,7 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import service.EmployeeService;
-
+/**
+ * 更改员工状态
+ * @author seirin
+ *
+ */
 @SuppressWarnings("serial")
 public class UpdateEmpStatusServlet extends HttpServlet {
 	private EmployeeService employeeService = new EmployeeService();

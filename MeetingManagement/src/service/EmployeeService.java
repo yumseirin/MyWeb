@@ -142,4 +142,26 @@ public class EmployeeService {
 	public List<Employee> searchEmp(String realname, String username, int status, int startrow, int endrow) {
 		return dao.searchEmp(realname, username, status, startrow, endrow);
 	}
+	
+	/**
+	 * 获得根据员工姓名realname用户名username查找或者查找全部数据的总条数
+	 * @param realname
+	 * @param username
+	 * @return 查询成功，返回查询条数，不成功返回-1
+	 */
+	public int selectAllRowCount(String realname, String username) {
+		return dao.selectAllRowCount(realname, username);
+	}
+	
+	/**
+	 * 根据员工姓名realname用户名username分页查询数据或者分页查询所有数据
+	 * @param realname
+	 * @param username
+	 * @param startrow
+	 * @param endrow
+	 * @return List<Employee>返回当前页的员工的集合
+	 */
+	public List<Employee> searchAllEmp(String realname, String username, int startrow, int endrow) {
+		return dao.searchAllEmp(realname, username, startrow, endrow);
+	}
 }

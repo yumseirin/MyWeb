@@ -30,21 +30,28 @@
 			<div class="content-nav">
 				会议预定 > 修改会议室信息
 			</div>
-			<form onsubmit="" action="" method="post">
+			<form action="UpdateMeetingRoomServlet" method="post">
 
 				<fieldset>
 					<legend>
 						会议室信息
 					</legend>
 					<table class="formtable">
-
+						<c:if test="${error!=null}">
+							<tr>
+								<td colspan="2">
+									<font color="red">${error}</font>
+								</td>
+							</tr>
+						</c:if>
 						<tr>
 							<td>
 								门牌号:
 							</td>
 							<td>
+								<input name="roomid" value="${mr.roomid}" type="hidden">
 								<input name="roomnum" id="roomnum" type="text" maxlength="10"
-									value="" />
+									value="${mr.roomnum}" />
 							</td>
 						</tr>
 						<tr>
@@ -53,7 +60,7 @@
 							</td>
 							<td>
 								<input name="roomname" id="roomname" type="text" maxlength="20"
-									value="" />
+									value="${mr.roomname}" />
 							</td>
 						</tr>
 						<tr>
@@ -61,7 +68,7 @@
 								最多容纳人数：
 							</td>
 							<td>
-								<input name="capacity" id="capacity" type="text" value="" />
+								<input name="capacity" id="capacity" type="text" value="${mr.capacity}" />
 							</td>
 						</tr>
 						<tr>
@@ -69,18 +76,20 @@
 								当前状态：
 							</td>
 							<td>
-
-								<input type="radio" name="status" id="status" value="0"
-									checked="checked" />
-								<label for="status">
-									启用
-								</label>
-								<input type="radio" name="status" id="status" value="1" />
-								<label for="status">
-									停用
-								</label>
-
-
+								<c:choose>
+                                <c:when test="${mr.status==0}">
+                                    <input type="radio" id="status" name="status" checked="checked" value="0"/>
+                                    <label for="status">启用</label>
+                                    <input type="radio" id="status" name="status" value="1"/>
+                                    <label for="status" value="1">停用</label>
+                                </c:when>
+                                <c:otherwise>
+                                    <input type="radio" id="status" name="status" value="0"/>
+                                    <label for="status">启用</label>
+                                    <input type="radio" id="status" name="status" checked="checked" value="1"/>
+                                    <label for="status" value="1">停用</label>
+                                </c:otherwise>
+                            </c:choose>
 							</td>
 						</tr>
 						<tr>
@@ -89,7 +98,7 @@
 							</td>
 							<td>
 								<textarea name="remark" id="remark" maxlength="200" rows="5"
-									cols="60"></textarea>
+									cols="60">${mr.remark}</textarea>
 							</td>
 						</tr>
 						<tr>

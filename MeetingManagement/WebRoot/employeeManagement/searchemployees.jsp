@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="vo.Employee,vo.Page"%>
 <%@ page import="util.CommonConstant"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -33,12 +34,12 @@
 			<div class="content-nav">
 				会议预定 > 搜索员工
 			</div>
-			<form action="" method="post">
+			<form action="SearchEmployeeServlet" method="post">
 
 				<!-- 每页显示多少条 -->
 				<fieldset>
 					<legend>
-						搜索会议
+						搜索员工
 					</legend>
 					<table class="formtable">
 						<tr>
@@ -46,43 +47,44 @@
 								姓名：
 							</td>
 							<td>
-								<input type="text" name="realname" id="realname" maxlength="20" />
+								<input type="text" name="realname" id="realname" value="${realname}" maxlength="20" />
 							</td>
 							<td>
-								账号名：
+								用户名：
 							</td>
 							<td>
-								<input type="text" name="username" id="username" maxlength="20" />
+								<input type="text" name="username" id="username" value="${username}" maxlength="20" />
 							</td>
 							<td>
 								状态：
 							</td>
 							<td>
-								<%
-									String status = request.getParameter("status");
-								%>
-								<input type="radio" id="status" name="status" value="" />
-								<label>
-									已批准
-								</label>
-
-								<input type="radio" id="status" name="status" value="" />
-
-								<label>
-									待审批
-								</label>
-
-
-
-								<label>
-									已关闭
-								</label>
-
-								<input type="radio" id="status" name="status" value="" />
-								<label>
-									所有
-								</label>
-
+								<c:choose>
+                                <c:when test="${status==0}">
+                                    <input type="radio" id="status" name="status" value="1"/><label>已批准</label>
+                                    <input checked="checked" type="radio" id="status" name="status" value="0"/><label>待审批</label>
+                                    <input type="radio" id="status" name="status" value="4"/><label>已关闭</label>
+                                    <input type="radio" id="status" name="status" value="5" /><label>所有</label>
+                                </c:when>
+                                <c:when test="${status==1}">
+                                    <input type="radio" checked="checked" id="status" name="status" value="1"/><label>已批准</label>
+                                    <input type="radio" id="status" name="status" value="0"/><label>待审批</label>
+                                    <input type="radio" id="status" name="status" value="4"/><label>已关闭</label>
+                                    <input type="radio" id="status" name="status" value="5" /><label>所有</label>
+                                </c:when>
+                                <c:when test="${status==4}">
+                                    <input type="radio" id="status" name="status" value="1"/><label>已批准</label>
+                                    <input type="radio" id="status" name="status" value="0"/><label>待审批</label>
+                                    <input type="radio" checked="checked" id="status" name="status" value="4"/><label>已关闭</label>
+                                    <input type="radio" id="status" name="status" value="5" /><label>所有</label>
+                                </c:when>
+                                <c:when test="${status==5}">
+                                    <input type="radio" id="status" name="status" value="1"/><label>已批准</label>
+                                    <input type="radio" id="status" name="status" value="0"/><label>待审批</label>
+                                    <input type="radio" id="status" name="status" value="4"/><label>已关闭</label>
+                                    <input type="radio" checked="checked" id="status" name="status" value="5" /><label>所有</label>
+                                </c:when>
+                            </c:choose>
 							</td>
 						</tr>
 						<tr>
@@ -107,15 +109,31 @@
 						<span class="info-number">${page}</span>页
 					</div>
 					<div class="header-nav">
-
-						<a href="">首页</a>
-						<a href="">上页</a>
-
-						<a href="">下页</a>
-						<a href="">末页</a> 跳到第
-						<input type="text" name="pagenow" id="pagenow" class="nav-number" />
-						页
-						<input type="button" class="clickbutton" value="跳转" onclick="" />
+						<a href="<%=basePath%>/SearchEmployeeServlet?page=1&status=${status}&realname=${realname}&username=${username}">首页</a>
+						<c:choose>
+	                        <c:when test="${page>1}">
+								<a href="<%=basePath%>/SearchEmployeeServlet?page=${page-1}&status=${status}&realname=${realname}&username=${username}">上页</a>
+							</c:when>
+	                        <c:otherwise>
+	                           	上页
+	                        </c:otherwise>
+                    	</c:choose>
+                    	<c:choose>
+	                        <c:when test="${page<totalPage}">
+								<a href="<%=basePath%>/SearchEmployeeServlet?page=${page+1}&status=${status}&realname=${realname}&username=${username}">下页</a>
+							</c:when>
+	                        <c:otherwise>
+	                         	下页
+	                        </c:otherwise>
+                    	</c:choose>
+						<a href="<%=basePath%>/SearchEmployeeServlet?page=${totalPage}&status=${status}&realname=${realname}&username=${username}">末页</a> 跳到第
+						<form action="<%=basePath%>/SearchEmployeeServlet" method="post" style="display: inline">
+                        <input type="hidden" name="realname" value="${realname}">
+                        <input type="hidden" name="username" value="${username}">
+                        <input type="hidden" name="status" value="${status}">跳到第
+                        <input type="text" id="pagenum" name="page" class="nav-number"/>页
+                        <input type="submit" class="clickbutton" value="跳转"/>
+                    </form>
 					</div>
 				</div>
 			</div>
@@ -140,7 +158,7 @@
 				<c:forEach items="${list}" var="emp">
 					<tr>
 						<td>
-							${emp.employeename}
+							${emp.realname}
 						</td>
 						<td>
 							${emp.username}
@@ -152,13 +170,22 @@
 							${emp.email}
 						</td>
 						<td>
-							<form method="post" action="/meeting/serachemp">
+							<form method="post" action="SearchEmployeeServlet">
 								<input type="hidden" name="realname" value="${realname}">
 								<input type="hidden" name="username" value="${username}">
 								<input type="hidden" name="status" value="${status}">
-								<input type="hidden" name="updateStatus" value="-1">
 								<input type="hidden" name="empid" value="${emp.employeeid}">
-								<input class="clickbutton" value="关闭账号" type="submit"></input>
+								<c:choose>
+		                        	<c:when test="${status==4}">
+		                        		<input type="hidden" name="updateStatus" value="0">
+			                         	<!-- 开启账号后需要重新审核 -->
+										<input class="clickbutton" value="开启账号" type="submit"></input>
+									</c:when>
+			                        <c:otherwise>
+			                         	<input type="hidden" name="updateStatus" value="4">
+										<input class="clickbutton" value="关闭账号" type="submit"></input>
+			                        </c:otherwise>
+                    			</c:choose>
 							</form>
 						</td>
 					</tr>

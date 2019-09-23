@@ -51,25 +51,23 @@
 					</th>
 				</tr>
 
-				<tr>
-					<td>
-						a
-					</td>
-					<td>
-						v
-					</td>
-					<td>
-						a
-					</td>
-
-					<td>
-						启用 (停用)什么状态显示什么
-					</td>
-					<td>
-						<a class="clickbutton"
-							onclick="window.location.href='meetingroomedit.jsp';">查看详情</a>
-					</td>
-				</tr>
+				<c:forEach items="${list}" var="mr">
+					<tr>
+						<td>${mr.roomnum}</td>
+						<td>${mr.roomname}</td>
+						<td>${mr.capacity}</td>
+						<td>
+							<c:choose>
+								<c:when test="${mr.status==0}">启用</c:when>
+								<c:when test="${mr.status==1}">停用</c:when>
+							</c:choose>
+						</td>
+						<td>
+							<a class="clickbutton"
+								href="MeetingRoomDetails?roomid=${mr.roomid}">查看详情</a>
+						</td>
+					</tr>
+				</c:forEach>
 			</table>
 		</div>
 	</body>

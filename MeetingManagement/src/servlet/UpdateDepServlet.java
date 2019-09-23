@@ -9,7 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import service.DepartmentService;
-
+/**
+ * 更改部门信息
+ * @author seirin
+ *
+ */
 @SuppressWarnings("serial")
 public class UpdateDepServlet extends HttpServlet {
     private DepartmentService departmentService = new DepartmentService();

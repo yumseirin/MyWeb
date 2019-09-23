@@ -8,7 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import service.DepartmentService;
-
+/**
+ * 删除部门
+ * @author seirin
+ *
+ */
 @SuppressWarnings("serial")
 public class DeleteDepSerlvet extends HttpServlet {
 	private DepartmentService departmentService = new DepartmentService();

@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -28,7 +29,7 @@
 				会议预定 > 添加会议室
 			</div>
 
-			<form action="" method="post">
+			<form action="AddMeetingRoomServlet" method="post">
 
 				<fieldset>
 					<legend>
@@ -36,12 +37,20 @@
 					</legend>
 
 					<table class="formtable" style="width: 70%" border="0">
+						<c:if test="${error!=null}">
+							<tr>
+								<td colspan="2">
+									<font color="red">${error}</font>
+								</td>
+							</tr>
+						</c:if>
 						<tr>
 							<td>
 								门牌号:
 							</td>
 							<td>
-								<input type="text" name="roomnum" id="roomnum" maxlength="10" />
+								<input type="text" name="roomnum" id="roomnum"
+									placeholder="例如：201" maxlength="10" />
 							</td>
 						</tr>
 						<tr>
@@ -49,7 +58,8 @@
 								会议室名称:
 							</td>
 							<td>
-								<input type="text" name="roomname" id="roomname" maxlength="20" />
+								<input type="text" name="roomname" id="roomname"
+									placeholder="例如：第一会议室" maxlength="20" />
 							</td>
 						</tr>
 						<tr>
@@ -57,7 +67,8 @@
 								最多容纳人数：
 							</td>
 							<td>
-								<input type="text" name="capacity" id="capacity" />
+								<input type="text" name="capacity" id="capacity"
+									placeholder="填写一个正整数" />
 							</td>
 						</tr>
 						<tr>
@@ -65,12 +76,12 @@
 								当前状态：
 							</td>
 							<td>
-								<input type="radio" name="status" id="status" value="1"
+								<input type="radio" name="status" id="status" value="0"
 									checked="checked" />
 								<label for="status">
 									启用
 								</label>
-								<input type="radio" name="status" id="status" value="0" />
+								<input type="radio" name="status" id="status" value="1" />
 								<label for="status" value="0">
 									停用
 								</label>
@@ -82,12 +93,12 @@
 								备注：
 							</td>
 							<td>
-								<textarea name="remark" id="remark" rows="3" cols="20"></textarea>
+								<textarea name="remark" id="remark" rows="3" cols="20"
+									placeholder="100字以内的文字描述"></textarea>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2" class="command">
-
 								<input type="submit" value="添加" class="clickbutton" />
 								<input type="reset" value="重置" class="clickbutton" />
 							</td>

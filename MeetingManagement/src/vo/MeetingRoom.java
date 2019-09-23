@@ -13,6 +13,34 @@ public class MeetingRoom {
 	private String remark; //备注
 	private Integer employeeid; //谁添加的会议
 	
+	public MeetingRoom() {
+		super();
+	}
+	
+	public MeetingRoom(Integer roomid, String roomnum, String roomname,
+			Integer capacity, Integer status, String remark) {
+		super();
+		this.roomid = roomid;
+		this.roomnum = roomnum;
+		this.roomname = roomname;
+		this.capacity = capacity;
+		this.status = status;
+		this.remark = remark;
+	}
+
+	public MeetingRoom(Integer roomid, String roomnum, String roomname,
+			Integer capacity, Integer status, String remark, Integer employeeid) {
+		super();
+		this.roomid = roomid;
+		this.roomnum = roomnum;
+		this.roomname = roomname;
+		this.capacity = capacity;
+		this.status = status;
+		this.remark = remark;
+		this.employeeid = employeeid;
+	}
+
+
 	public Integer getRoomid() {
 		return roomid;
 	}

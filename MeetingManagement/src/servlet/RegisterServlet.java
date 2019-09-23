@@ -9,7 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.EmployeeService;
 import vo.Employee;
-
+/**
+ * 注册
+ * @author seirin
+ *
+ */
 @SuppressWarnings("serial")
 public class RegisterServlet extends HttpServlet {
 	private EmployeeService employeeService = new EmployeeService();

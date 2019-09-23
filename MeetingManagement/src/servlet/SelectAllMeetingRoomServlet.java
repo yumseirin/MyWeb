@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.DepartmentService;
-import vo.Department;
+import service.MeetingRoomService;
+import vo.MeetingRoom;
 /**
- * 获得部门
+ * 查询所有会议室
  * @author seirin
  *
  */
 @SuppressWarnings("serial")
-public class DepartmentsServlet extends HttpServlet {
-	private DepartmentService departmentService = new DepartmentService();
+public class SelectAllMeetingRoomServlet extends HttpServlet {
+	private MeetingRoomService meetingRoomService = new MeetingRoomService();
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -26,9 +26,10 @@ public class DepartmentsServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		List<Department> list = departmentService.selectAllUsableDepartment();
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("/employeeManagement/departments.jsp")
+		List<MeetingRoom> allMeetingRoom = meetingRoomService
+				.selectAllMeetingRoom();
+		request.setAttribute("list", allMeetingRoom);
+		request.getRequestDispatcher("/meetingReservation/allmeetingroom.jsp")
 				.forward(request, response);
 	}
 

@@ -1,24 +1,23 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.DepartmentService;
-import vo.Department;
+import service.MeetingRoomService;
+import vo.MeetingRoom;
 /**
- * 获得部门
+ * 根据ID获得会议室信息
  * @author seirin
  *
  */
 @SuppressWarnings("serial")
-public class DepartmentsServlet extends HttpServlet {
-	private DepartmentService departmentService = new DepartmentService();
-
+public class MeetingRoomDetails extends HttpServlet {
+	private MeetingRoomService meetingRoomService = new MeetingRoomService();
+	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doPost(request, response);
@@ -26,10 +25,10 @@ public class DepartmentsServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		List<Department> list = departmentService.selectAllUsableDepartment();
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("/employeeManagement/departments.jsp")
-				.forward(request, response);
+		String roomid = request.getParameter("roomid");
+        MeetingRoom meetingRoom = meetingRoomService.selectMeetingRoomById(Integer.parseInt(roomid));
+        request.setAttribute("mr", meetingRoom);
+        request.getRequestDispatcher("/meetingReservation/meetingroomedit.jsp").forward(request, response);
 	}
 
 }

@@ -33,8 +33,8 @@ public class CommonConstant {
 	/**
 	 * 会议室状态
 	 */
-	public static final String MEETINGROOMSTATUS0="0"; //空闲
-	public static final String MEETINGROOMSTATUS1="1"; //占用
+	public static final String MEETINGROOMSTATUS0="0"; //空闲/启用
+	public static final String MEETINGROOMSTATUS1="1"; //占用/停用
 	
 	/**
 	 * 预订会议状态

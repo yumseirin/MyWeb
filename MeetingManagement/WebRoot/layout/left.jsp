@@ -55,7 +55,7 @@
 						</li>
 						<li class="sidebar-menuitem">
 							<!-- &status=5 -->
-							<a href="employeeManagement/searchemployees.jsp" target="main">搜索员工</a>
+							<a href="SearchEmployeeServlet" target="main">搜索员工</a>
 						</li>
 					</ul>
 				</div>
@@ -69,7 +69,7 @@
 						<a href="meetingReservation/addmeetingroom.jsp" target="main">添加会议室</a>
 					</li>
 					<li class="sidebar-menuitem">
-						<a href="meetingReservation/allmeetingroom.jsp" target="main">查看会议室</a>
+						<a href="SelectAllMeetingRoomServlet" target="main">查看会议室</a>
 					</li>
 					<li class="sidebar-menuitem">
 						<a href="meetingReservation/bookmeeting.jsp" target="main">预定会议</a>

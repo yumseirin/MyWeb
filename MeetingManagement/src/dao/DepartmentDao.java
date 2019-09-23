@@ -114,7 +114,7 @@ public class DepartmentDao extends DataBaseFactory {
 	 */
 	public List<Department> selectAllUsableDepartment() {
 		List<Department> list = new ArrayList<Department>();
-		String sql = "select * from department where departmentstatus=?";
+		String sql = "select * from department where departmentstatus=? order by departmentid";
 		Connection conn = getConnection();
 		PreparedStatement ps = getPS(conn, sql);
 		

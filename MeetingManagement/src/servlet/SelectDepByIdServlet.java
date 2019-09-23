@@ -12,7 +12,11 @@ import com.alibaba.fastjson.JSON;
 
 import service.DepartmentService;
 import vo.Department;
-
+/**
+ * 根据Id获得部门信息
+ * @author seirin
+ *
+ */
 @SuppressWarnings("serial")
 public class SelectDepByIdServlet extends HttpServlet {
 	private DepartmentService departmentService = new DepartmentService();

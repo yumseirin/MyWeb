@@ -45,8 +45,26 @@
     <servlet-name>DeleteDepSerlvet</servlet-name>
     <servlet-class>servlet.DeleteDepSerlvet</servlet-class>
   </servlet>
-
-
+  <servlet>
+    <servlet-name>SearchEmployeeServlet</servlet-name>
+    <servlet-class>servlet.SearchEmployeeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddMeetingRoomServlet</servlet-name>
+    <servlet-class>servlet.AddMeetingRoomServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>SelectAllMeetingRoomServlet</servlet-name>
+    <servlet-class>servlet.SelectAllMeetingRoomServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UpdateMeetingRoomServlet</servlet-name>
+    <servlet-class>servlet.UpdateMeetingRoomServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>MeetingRoomDetails</servlet-name>
+    <servlet-class>servlet.MeetingRoomDetails</servlet-class>
+  </servlet>
 
 
 
@@ -92,6 +110,26 @@
   <servlet-mapping>
     <servlet-name>DeleteDepSerlvet</servlet-name>
     <url-pattern>/DeleteDepSerlvet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SearchEmployeeServlet</servlet-name>
+    <url-pattern>/SearchEmployeeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddMeetingRoomServlet</servlet-name>
+    <url-pattern>/AddMeetingRoomServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SelectAllMeetingRoomServlet</servlet-name>
+    <url-pattern>/SelectAllMeetingRoomServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateMeetingRoomServlet</servlet-name>
+    <url-pattern>/UpdateMeetingRoomServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>MeetingRoomDetails</servlet-name>
+    <url-pattern>/MeetingRoomDetails</url-pattern>
   </servlet-mapping>
 
 	<!-- =======================设置监听======================== -->

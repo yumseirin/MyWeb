@@ -169,7 +169,7 @@ public class EmployeeDao extends DataBaseFactory {
 	 */
 	public List<Employee> selectUnApprovedAccount() {
         List<Employee> list = new ArrayList<Employee>();
-        String sql = "select * from employee where status=? and role =?";
+        String sql = "select * from employee where status=? and role =? order by employeeid";
         Connection conn = getConnection();
         PreparedStatement ps = getPS(conn, sql);
         ResultSet rs = null;
@@ -269,6 +269,100 @@ public class EmployeeDao extends DataBaseFactory {
         	ps.setInt(1, status);
             ps.setInt(2, Integer.parseInt(CommonConstant.ROLEEMPLOYEE));
             int index = 3;//?的位置
+            if (realname != null && !"".equals(realname)) {
+                ps.setString(index++, realname);
+            }
+            if (username != null && !"".equals(username)) {
+                ps.setString(index++, username);
+            }
+            ps.setInt(index++, startrow);
+            ps.setInt(index++, endrow);  
+            rs = executeQuery(ps);
+            while (rs.next()) {
+                list.add(new Employee(rs.getInt("employeeid"), rs
+						.getString("realname"), rs.getString("username"), rs
+						.getString("password"), rs.getString("phone"), rs
+						.getString("email"), rs.getInt("departmentid"), rs
+						.getInt("status"), rs.getString("remark"), rs
+						.getInt("role")));
+            }
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(rs, ps, conn);
+        }
+        return list;
+    }
+	
+	/**
+	 * 获得根据员工姓名realname用户名username查找或者查找全部数据的总条数
+	 * @param realname
+	 * @param username
+	 * @return 查询成功，返回查询条数，不成功返回-1
+	 */
+	public int selectAllRowCount(String realname, String username) {
+        StringBuffer sb = new StringBuffer("select count(*) from employee where 1=1");
+      //如果realname不为为空或空字符串，在sql语句中加上" and realname=?"
+        if (realname != null && !"".equals(realname)) {
+            sb.append(" and realname=?");
+        }
+        //如果username不为为空或空字符串，在sql语句中加上" and username=?"
+        if (username != null && !"".equals(username)) {
+            sb.append(" and username=?");
+        }
+        String sql = sb.toString();
+        Connection conn = getConnection();
+        PreparedStatement ps = getPS(conn, sql);
+        ResultSet rs = null;
+        try {
+            int index = 1;//?的位置
+            if (realname != null && !"".equals(realname)) {
+                ps.setString(index++, realname);
+            }
+            if (username != null && !"".equals(username)) {
+                ps.setString(index++, username);
+            }
+            rs = executeQuery(ps);
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(rs, ps, conn);
+        }
+        return -1;
+    }
+	
+	/**
+	 * 根据员工姓名realname用户名username分页查询数据或者分页查询所有数据
+	 * @param realname
+	 * @param username
+	 * @param startrow
+	 * @param endrow
+	 * @return List<Employee>返回当前页的员工的集合
+	 */
+	public List<Employee> searchAllEmp(String realname, String username, int startrow, int endrow) {
+        List<Employee> list = new ArrayList<Employee>();
+        StringBuffer sb = new StringBuffer("select * from (" +
+        								   " select rownum rn,tb.* from (" +
+        								   " select * from employee where 1=1");
+        //如果realname不为为空或空字符串，在sql语句中加上" and realname=?"
+        if (realname != null && !"".equals(realname)) {
+            sb.append(" and realname=?");
+        }
+        //如果username不为为空或空字符串，在sql语句中加上" and username=?"
+        if (username != null && !"".equals(username)) {
+            sb.append(" and username=?");
+        }
+        sb.append(" order by employeeid )tb )a where rn between ? and ?");
+        String sql = sb.toString();
+        Connection conn = getConnection();
+        PreparedStatement ps = getPS(conn, sql);
+        ResultSet rs = null;
+        try {
+            int index = 1;//?的位置
             if (realname != null && !"".equals(realname)) {
                 ps.setString(index++, realname);
             }

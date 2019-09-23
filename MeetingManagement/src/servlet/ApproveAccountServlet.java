@@ -10,7 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.EmployeeService;
 import vo.Employee;
-
+/**
+ * 获得未审批的用户
+ * @author seirin
+ *
+ */
 @SuppressWarnings("serial")
 public class ApproveAccountServlet extends HttpServlet {
 	private EmployeeService employeeService = new EmployeeService();
