@@ -61,11 +61,11 @@
 	height: 225px;
 }
 </style>
-		<script type="text/javascript" src="js/bookmeeting.js">
+<script type="text/javascript" src="js/bookmeeting.js">
 </script>
-		<script type="text/javascript" src="js/jquery-1.8.3.min.js">
+<script type="text/javascript" src="js/jquery-1.8.3.min.js">
 </script>
-		<script type="text/javascript">
+<script type="text/javascript">
 $(function() {
 	$("#selDepartments").ready(function() {
 		department();
@@ -91,7 +91,7 @@ function callBackDepartmentSuccess(data) {
 	<body>
 		<div class="page-content">
 			<div class="content-nav">
-				会议预定 > 预定会议
+				会议预定 &gt; 预定会议
 			</div>
 			<form onsubmit="return validate()" action="BookMeetingServlet">
 
@@ -173,7 +173,7 @@ function callBackDepartmentSuccess(data) {
 											请选择部门
 										</option>
 									</select>
-									<select id="selEmployees" name="selEmployees" multiple="true">
+									<select id="selEmployees" name="selEmployees" multiple="multiple">
 									</select>
 								</div>
 								<div id="divoperator">
@@ -184,7 +184,7 @@ function callBackDepartmentSuccess(data) {
 								</div>
 								<div id="divto">
 									<select id="selSelectedEmployees" name="selSelectedEmployees"
-										multiple="true">
+										multiple="multiple">
 									</select>
 								</div>
 							</td>

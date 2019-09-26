@@ -25,10 +25,11 @@
 		<script type="text/javascript">
 $(function() {
 	$("#departmentid").ready(function() {
-		department();
+		regdepartment();
 	});
 });
-function department() {
+function regdepartment() {
+	
 	$.post("GetDepServlet", {}, callBackDepartmentSuccess);
 }
 
@@ -45,12 +46,11 @@ function callBackDepartmentSuccess(data) {
 	}
 }
 </script>
-
 	</head>
 	<body>
 		<div class="page-content">
 			<div class="content-nav">
-				人员管理 > 员工注册
+				人员管理 &gt; 员工注册
 			</div>
 			<form action="register" name="register" method="post">
 				<fieldset>
@@ -94,10 +94,10 @@ function callBackDepartmentSuccess(data) {
 								密码：
 							</td>
 							<td>
-								<input type="password" name="password" id="password"
+								<input onchange="test()" type="password" name="password" id="password"
 									maxlength="20" />
 								&nbsp;&nbsp;
-								<font color="red">*</font>
+								<font id="passwordmsg" color="red">*</font>
 							</td>
 						</tr>
 						<tr>
@@ -105,7 +105,7 @@ function callBackDepartmentSuccess(data) {
 								确认密码：
 							</td>
 							<td>
-								<input type="password" name="repassword" id="repassword"
+								<input type="password" onchange="test()" name="repassword" id="repassword"
 									maxlength="20" />
 								&nbsp;&nbsp;
 								<font color="red">*</font>
@@ -146,6 +146,8 @@ function callBackDepartmentSuccess(data) {
 							<td colspan="6" class="command">
 								<input type="submit" class="clickbutton" value="注册" />
 								<input type="reset" class="clickbutton" value="重置" />
+								<input type="button" value="返回" class="clickbutton"
+										onclick="window.history.back();" />
 							</td>
 						</tr>
 					</table>
