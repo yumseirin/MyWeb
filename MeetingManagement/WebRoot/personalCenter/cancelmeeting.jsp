@@ -27,11 +27,9 @@
 	<body>
 		<div class="page-content">
 			<div class="content-nav">
-				u会议预定 &gt; 撤销会议预定
+				会议预定 &gt; 撤销会议预定
 			</div>
-			<form action="CheXiaoMeetingServlet" onclick="">
-				<input type="hidden" name="code" value="update">
-				<input type="hidden" name="meetingid" value="${param.meetingid}">
+			<form action="DoCancelMeetingServlet" method="post">
 				<fieldset>
 					<legend>
 						撤销预定
@@ -39,24 +37,25 @@
 					<table class="formtable">
 						<tr>
 							<td>
+							<input type="hidden" name="mid" value="${m.meetingid}" />
+							
 								会议名称：
 							</td>
 							<td>
-								技术部大会
+								${m.meetingname}
 							</td>
 						</tr>
 						<tr>
 							<td>
 								撤销理由：
 							</td>
-
 							<td>
-								<textarea name="meetingremark" id="meetingremark" rows="5"></textarea>
+								<textarea id="description" rows="5" name="canceledreason"></textarea>
 							</td>
 						</tr>
 						<tr>
 							<td class="command" colspan="2">
-								<input type="submit" class="clickbutton" value="确认撤销" />
+								<input type="submit" class="clickbutton" value="确认撤销"></input>
 								<input type="button" class="clickbutton" value="返回"
 									onclick="window.history.back();" />
 							</td>

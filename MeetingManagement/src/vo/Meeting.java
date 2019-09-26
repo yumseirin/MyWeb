@@ -1,10 +1,12 @@
 package vo;
 
 import java.sql.Timestamp;
+
 /**
  * 预定会议实体类
+ * 
  * @author seirin
- *
+ * 
  */
 public class Meeting {
 	private Integer meetingid; // 预定会议id
@@ -15,11 +17,90 @@ public class Meeting {
 	private Timestamp reservetime; // 会议预定时间
 	private Integer roomid; // 会议室id
 	private String meetingremark; // 会议说明
-	private Integer meetinguserid; // 会议参加者id
-	private Integer reserveuserid; // 会讲义预定人的id
+	// private Integer[] meetinguserid; // 会议参加者id
+	private Integer reserveuserid; // 会义预定人的id
 	private Integer meetingstatus; // 会议状态
 	private Timestamp canceledtime; // 取消时间
 	private String canceledreason; // 取消原因
+	private String roomname;	                //会议室名称
+	private String realname; 
+
+	public Meeting() {
+		super();
+	}
+
+	public Meeting(Integer meetingid, String meetingname,
+			Integer meetingpersonnum, Timestamp meetingstarttime,
+			Timestamp meetingendtime, Timestamp reservetime, Integer roomid,
+			String meetingremark, Integer reserveuserid, Integer meetingstatus,
+			Timestamp canceledtime) {
+		super();
+		this.meetingid = meetingid;
+		this.meetingname = meetingname;
+		this.meetingpersonnum = meetingpersonnum;
+		this.meetingstarttime = meetingstarttime;
+		this.meetingendtime = meetingendtime;
+		this.reservetime = reservetime;
+		this.roomid = roomid;
+		this.meetingremark = meetingremark;
+		this.reserveuserid = reserveuserid;
+		this.meetingstatus = meetingstatus;
+		this.canceledtime = canceledtime;
+	}
+
+	public Meeting(String meetingname, Integer meetingpersonnum,
+			Timestamp meetingstarttime, Timestamp meetingendtime,
+			Timestamp reservetime, Integer roomid, String meetingremark,
+			Integer reserveuserid) {
+		super();
+		this.meetingname = meetingname;
+		this.meetingpersonnum = meetingpersonnum;
+		this.meetingstarttime = meetingstarttime;
+		this.meetingendtime = meetingendtime;
+		this.reservetime = reservetime;
+		this.roomid = roomid;
+		this.meetingremark = meetingremark;
+		this.reserveuserid = reserveuserid;
+	}
+
+	
+	
+	public Meeting(Integer meetingid, String meetingname,
+			Integer meetingpersonnum, Timestamp meetingstarttime,
+			Timestamp meetingendtime, Timestamp reservetime, Integer roomid,
+			String meetingremark, Integer reserveuserid, Integer meetingstatus,
+			Timestamp canceledtime, String roomname, String realname) {
+		super();
+		this.meetingid = meetingid;
+		this.meetingname = meetingname;
+		this.meetingpersonnum = meetingpersonnum;
+		this.meetingstarttime = meetingstarttime;
+		this.meetingendtime = meetingendtime;
+		this.reservetime = reservetime;
+		this.roomid = roomid;
+		this.meetingremark = meetingremark;
+		this.reserveuserid = reserveuserid;
+		this.meetingstatus = meetingstatus;
+		this.canceledtime = canceledtime;
+		this.roomname = roomname;
+		this.realname = realname;
+	}
+
+	public String getRoomname() {
+		return roomname;
+	}
+
+	public void setRoomname(String roomname) {
+		this.roomname = roomname;
+	}
+
+	public String getRealname() {
+		return realname;
+	}
+
+	public void setRealname(String realname) {
+		this.realname = realname;
+	}
 
 	public Integer getMeetingid() {
 		return meetingid;
@@ -83,14 +164,6 @@ public class Meeting {
 
 	public void setMeetingremark(String meetingremark) {
 		this.meetingremark = meetingremark;
-	}
-
-	public Integer getMeetinguserid() {
-		return meetinguserid;
-	}
-
-	public void setMeetinguserid(Integer meetinguserid) {
-		this.meetinguserid = meetinguserid;
 	}
 
 	public Integer getReserveuserid() {

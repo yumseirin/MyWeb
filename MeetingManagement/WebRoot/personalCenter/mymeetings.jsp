@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -57,30 +58,35 @@
 						操作
 					</th>
 				</tr>
-
-				<tr>
-					<td>
-						xx
-					</td>
-					<td>
-						xx
-					</td>
-					<td>
-						xx
-					</td>
-					<td>
-						xx
-					</td>
-					<td>
-						xx
-					</td>
-					<td>
-						xx
-					</td>
-					<td>
-						<a class="clickbutton" href="mymeetingdetail.jsp">查看详情</a>
-					</td>
-				</tr>
+				<c:forEach items="${mrs}" var="mr">
+					<tr>
+						<td>
+							${mr.meetingname}
+						</td>
+						<td>
+							${mr.roomname}
+						</td>
+						<td>
+							<fmt:formatDate value="${mr.meetingstarttime}"
+								pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+						</td>
+						<td>
+							<fmt:formatDate value="${mr.meetingendtime}"
+								pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+						</td>
+						<td>
+							<fmt:formatDate value="${mr.reservetime}"
+								pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+						</td>
+						<td>
+							${mr.realname}
+						</td>
+						<td>
+							<a class="clickbutton"
+								href="MeetingDetailsServlet?mid=${mr.meetingid}">查看详情</a>
+						</td>
+					</tr>
+				</c:forEach>
 			</table>
 		</div>
 	</body>

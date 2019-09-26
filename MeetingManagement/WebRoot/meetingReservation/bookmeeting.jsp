@@ -6,32 +6,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<script type="text/javascript">
-//将待选区员工 移至 选择区
-function yzxq() {
-	var selemp = document.getElementById("selEmployees").selectedOptions;
-	var eids = document.getElementById("selSelectedEmployees");
-	aa: for ( var i = 0; i < selemp.length; i++) {
-		for ( var j = 0; j < eids.length; j++) {
-			if (selemp[i].value == eids[j].value) {
-				continue aa;
-			}
-		}
-		var ops = document.createElement("option");
-		ops.value = selemp[i].value;
-		ops.innerHTML = selemp[i].innerHTML;
-		eids.appendChild(ops);
-	}
-}
-//移除选择区
-function yichu() {
-	var eids = document.getElementById("selSelectedEmployees");
-	var eidoption = document.getElementById("selSelectedEmployees").selectedOptions;
-	for ( var d in eidoption) {
-		eids.removeChild(eidoption[0]);
-	}
-}
-</script>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
@@ -86,11 +61,31 @@ function yichu() {
 	height: 225px;
 }
 </style>
-
-
-
-
-
+		<script type="text/javascript" src="js/bookmeeting.js">
+</script>
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js">
+</script>
+		<script type="text/javascript">
+$(function() {
+	$("#selDepartments").ready(function() {
+		department();
+	});
+});
+function department() {
+	$.post("GetDepServlet", {}, callBackDepartmentSuccess);
+}
+function callBackDepartmentSuccess(data) {
+	var str = "<option value=\"-1\">请选择部门</option>";
+	if (data != null && data != "") {
+		for ( var i = 0; i < data.length; i++) {
+			str += "<option value=\"" + data[i].departmentid + "\">"
+					+ data[i].departmentname + "</option>"
+		}
+		$("#selDepartments").html("");
+		$("#selDepartments").append(str);
+	}
+}
+</script>
 	</head>
 
 	<body>
@@ -98,13 +93,13 @@ function yichu() {
 			<div class="content-nav">
 				会议预定 > 预定会议
 			</div>
-			<form onsubmit="" action="">
+			<form onsubmit="return validate()" action="BookMeetingServlet">
 
 				<fieldset>
 					<legend>
 						会议信息
 					</legend>
-
+					<font color="red">${requestScope.msg}</font>
 					<table class="formtable">
 						<tr>
 							<td>
@@ -128,7 +123,8 @@ function yichu() {
 								预计开始时间：
 							</td>
 							<td>
-								<input type="text" name="meetingstarttime" id="meetingstarttime"
+								<input class="Wdate" type="text" name="meetingstarttime"
+									id="meetingstarttime"
 									onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
 
 							</td>
@@ -138,7 +134,8 @@ function yichu() {
 								预计结束时间：
 							</td>
 							<td>
-								<input type="text" name="meetingendtime" id="meetingendtime"
+								<input class="Wdate" type="text" name="meetingendtime"
+									id="meetingendtime"
 									onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
 
 							</td>
@@ -149,16 +146,10 @@ function yichu() {
 							</td>
 							<td>
 								<select id="roomid" name="roomid" onfocus="chooseMeetingRooms()">
-									<option>
+									<option value="-1">
 										请选择会议室
 									</option>
 
-									<option value="11">
-										1号
-									</option>
-									<option value="222">
-										2号
-									</option>
 								</select>
 							</td>
 						</tr>
@@ -181,29 +172,15 @@ function yichu() {
 										<option>
 											请选择部门
 										</option>
-
-										<option value="1">
-											技术部
-										</option>
-										<option value="2">
-											财务部
-										</option>
 									</select>
 									<select id="selEmployees" name="selEmployees" multiple="true">
-										<option value="1">
-											张三
-										</option>
-										<option value="2">
-											李四
-										</option>
 									</select>
 								</div>
 								<div id="divoperator">
-
 									<input type="button" class="clickbutton" value="&gt;"
-										onclick="yzxq()" />
+										onclick="selectEmployees()" />
 									<input type="button" class="clickbutton" value="&lt;"
-										onclick="yichu()" />
+										onclick="deSelectEmployees()" />
 								</div>
 								<div id="divto">
 									<select id="selSelectedEmployees" name="selSelectedEmployees"

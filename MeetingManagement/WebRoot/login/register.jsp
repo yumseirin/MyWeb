@@ -29,7 +29,7 @@ $(function() {
 	});
 });
 function department() {
-	$.post("RegGetDepServlet", {}, callBackDepartmentSuccess);
+	$.post("GetDepServlet", {}, callBackDepartmentSuccess);
 }
 
 function callBackDepartmentSuccess(data) {

@@ -30,13 +30,13 @@
 				</div>
 				<ul class="sidebar-menu">
 					<li class="sidebar-menuitem">
-						<a href="personalCenter/notifications.jsp" target="main">最新通知</a>
+						<a href="NotificationsServlet" target="main">最新通知</a>
 					</li>
 					<li class="sidebar-menuitem active">
-						<a href="personalCenter/mybookings.jsp" target="main">我的预定</a>
+						<a href="MyBookingServlet" target="main">我的预定</a>
 					</li>
 					<li class="sidebar-menuitem">
-						<a href="personalCenter/mymeetings.jsp" target="main">我的会议</a>
+						<a href="MyMeetingServlet" target="main">我的会议</a>
 					</li>
 
 				</ul>
@@ -75,7 +75,7 @@
 						<a href="meetingReservation/bookmeeting.jsp" target="main">预定会议</a>
 					</li>
 					<li class="sidebar-menuitem">
-						<a href="meetingReservation/searchmeetings.jsp" target="main">搜索会议</a>
+						<a href="SearchMeetingServlet" target="main">搜索会议</a>
 					</li>
 
 				</ul>

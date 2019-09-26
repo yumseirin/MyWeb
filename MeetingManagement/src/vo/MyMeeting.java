@@ -16,11 +16,87 @@ public class MyMeeting {
 	  private Integer  roomid;                  //会议室id
 	  private String meetingremark;             //会议说明
 	  private String meetinguserid;             //会议参加者
-	  private Integer reserveuserid;            //会讲义预定人的id
+	  private Integer reserveuserid;            //会议预定人的id
 	  private Integer meetingstatus;            //会议状态
 	  private String roomname;	                //会议室名称
 	  private String realname; 		            //员工真实姓名
+	  private Timestamp canceledtime;			//取消时间
+	  private String canceledreason;			//取消原因
 	  
+	  
+	public MyMeeting() {
+		super();
+	}
+	
+	
+	
+	public MyMeeting(Integer meetingid, String meetingname,
+			Integer meetingpersonnum, Timestamp meetingstarttime,
+			Timestamp meetingendtime, Timestamp reservetime, Integer roomid,
+			String meetingremark, Integer reserveuserid, Integer meetingstatus,
+			String roomname, String realname, Timestamp canceledtime,
+			String canceledreason) {
+		super();
+		this.meetingid = meetingid;
+		this.meetingname = meetingname;
+		this.meetingpersonnum = meetingpersonnum;
+		this.meetingstarttime = meetingstarttime;
+		this.meetingendtime = meetingendtime;
+		this.reservetime = reservetime;
+		this.roomid = roomid;
+		this.meetingremark = meetingremark;
+		this.reserveuserid = reserveuserid;
+		this.meetingstatus = meetingstatus;
+		this.roomname = roomname;
+		this.realname = realname;
+		this.canceledtime = canceledtime;
+		this.canceledreason = canceledreason;
+	}
+
+	
+
+	public MyMeeting(Integer meetingid, String meetingname,
+			Integer meetingpersonnum, Timestamp meetingstarttime,
+			Timestamp meetingendtime, Timestamp reservetime, Integer roomid,
+			String meetingremark, Integer reserveuserid, Integer meetingstatus,
+			String roomname, Timestamp canceledtime) {
+		super();
+		this.meetingid = meetingid;
+		this.meetingname = meetingname;
+		this.meetingpersonnum = meetingpersonnum;
+		this.meetingstarttime = meetingstarttime;
+		this.meetingendtime = meetingendtime;
+		this.reservetime = reservetime;
+		this.roomid = roomid;
+		this.meetingremark = meetingremark;
+		this.reserveuserid = reserveuserid;
+		this.meetingstatus = meetingstatus;
+		this.roomname = roomname;
+		this.canceledtime = canceledtime;
+	}
+
+
+
+	public Timestamp getCanceledtime() {
+		return canceledtime;
+	}
+
+	public void setCanceledtime(Timestamp canceledtime) {
+		this.canceledtime = canceledtime;
+	}
+
+	public String getCanceledreason() {
+		return canceledreason;
+	}
+	
+	public void setCanceledreason(String canceledreason) {
+		this.canceledreason = canceledreason;
+	}
+
+
+
+
+
 	public Integer getMeetingid() {
 		return meetingid;
 	}

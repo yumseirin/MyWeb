@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -52,28 +53,29 @@
 						操作
 					</th>
 				</tr>
-
-				<tr>
-					<td>
-						年终总结
-					</td>
-					<td>
-						1号会议室
-					</td>
-					<td>
-						2019-10-1
-					</td>
-					<td>
-						2019-10-6
-					</td>
-
-					<td>
-						<a class="clickbutton" href="mymeetingdetail.jsp">查看详情</a>
-					</td>
-				</tr>
-
+				<c:forEach items="${mt7}" var="mt">
+					<tr>
+						<td>
+							${mt.meetingname}
+						</td>
+						<td>
+							${mt.roomname}
+						</td>
+						<td>
+							<fmt:formatDate value="${mt.meetingstarttime}"
+								pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+						</td>
+						<td>
+							<fmt:formatDate value="${mt.meetingendtime}"
+								pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+						</td>
+						<td>
+							<a class="clickbutton"
+								href="MeetingDetailsServlet?mid=${mt.meetingid}">查看详情</a>
+						</td>
+					</tr>
+				</c:forEach>
 			</table>
-
 			<table class="listtable">
 				<caption>
 					已取消的会议:
@@ -98,30 +100,31 @@
 						操作
 					</th>
 				</tr>
-
-				<tr>
-					<td>
-						年中总结
-					</td>
-					<td>
-						1号会议室
-					</td>
-					<td>
-						2019-10-1
-					</td>
-					<td>
-						2019-10-6
-					</td>
-					<td>
-						员工出差
-					</td>
-
-					<td>
-						<a class="clickbutton" href="mymeetingdetail.jsp">查看详情</a>
-					</td>
-				</tr>
-
-
+				<c:forEach items="${cm}" var="m">
+					<tr>
+						<td>
+							${m.meetingname}
+						</td>
+						<td>
+							${m.roomname}
+						</td>
+						<td>
+							<fmt:formatDate value="${m.meetingstarttime}"
+								pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+						</td>
+						<td>
+							<fmt:formatDate value="${m.meetingendtime}"
+								pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+						</td>
+						<td>
+							${m.canceledreason}
+						</td>
+						<td>
+							<a class="clickbutton"
+								href="MeetingDetailsServlet?mid=${m.meetingid}">查看详情</a>
+						</td>
+					</tr>
+				</c:forEach>
 			</table>
 
 		</div>
