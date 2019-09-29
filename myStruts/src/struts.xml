@@ -6,10 +6,10 @@
 	<package name="Person" extends="struts-default">
 
 		<action name="loginAction" class="action.LoginAction">
-			<result name="success" type="chain">loginAction2</result>
+			<result name="success" type="chain">loginAction2_login</result>
 			<result name="final">/login.jsp</result>
 		</action>
-		<action name="loginAction2" class="action.LoginAction2" method="login">
+		<action name="loginAction2_*" class="action.LoginAction2" method="{1}">
 			<result name="success">/index.jsp</result>
 			<result name="final">/login.jsp</result>
 		</action>
