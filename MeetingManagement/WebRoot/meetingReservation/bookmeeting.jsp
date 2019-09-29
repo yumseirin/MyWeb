@@ -85,6 +85,15 @@ function callBackDepartmentSuccess(data) {
 		$("#selDepartments").append(str);
 	}
 }
+function selSelectEmpcheck(){
+	$("#spselSelectedEmployees").html("");
+	var selSelectedEmployees = $("#selSelectedEmployees").val();
+	if (selSelectedEmployees==""||selSelectedEmployees==null) {
+		$("#spselSelectedEmployees").html("请选择参会员工!");
+		document.getElementById("selSelectedEmployees").focus();
+		return false;
+	}
+}
 </script>
 	</head>
 
@@ -108,6 +117,7 @@ function callBackDepartmentSuccess(data) {
 							<td>
 								<input type="text" name="meetingname" id="meetingname"
 									maxlength="20" />
+								<span id="spmeetingname" style="color:red;"></span>
 							</td>
 						</tr>
 						<tr>
@@ -116,6 +126,8 @@ function callBackDepartmentSuccess(data) {
 							</td>
 							<td>
 								<input type="text" name="meetingpersonnum" id="meetingpersonnum" />
+								<span id="spmeetingpersonnum" style="color:red;"></span>
+								
 							</td>
 						</tr>
 						<tr>
@@ -126,7 +138,7 @@ function callBackDepartmentSuccess(data) {
 								<input class="Wdate" type="text" name="meetingstarttime"
 									id="meetingstarttime"
 									onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
-
+								<span id="spmeetingstarttime" style="color:red;"></span>
 							</td>
 						</tr>
 						<tr>
@@ -137,7 +149,7 @@ function callBackDepartmentSuccess(data) {
 								<input class="Wdate" type="text" name="meetingendtime"
 									id="meetingendtime"
 									onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
-
+								<span id="spmeetingendtime" style="color:red;"></span>
 							</td>
 						</tr>
 						<tr>
@@ -146,11 +158,11 @@ function callBackDepartmentSuccess(data) {
 							</td>
 							<td>
 								<select id="roomid" name="roomid" onfocus="chooseMeetingRooms()">
-									<option value="-1">
+									<option value="-1" id="oproomid">
 										请选择会议室
 									</option>
-
 								</select>
+								<span id="sproomid" style="color:red;"></span>
 							</td>
 						</tr>
 						<tr>
@@ -187,11 +199,12 @@ function callBackDepartmentSuccess(data) {
 										multiple="multiple">
 									</select>
 								</div>
+								<div id="spselSelectedEmployees" style="color:red;"></div>
 							</td>
 						</tr>
 						<tr>
 							<td class="command" colspan="2">
-								<input type="submit" class="clickbutton" value="预定会议" />
+								<input type="submit" class="clickbutton" value="预定会议" onclick="return selSelectEmpcheck();"/>
 								<input type="reset" class="clickbutton" value="重置" />
 							</td>
 						</tr>

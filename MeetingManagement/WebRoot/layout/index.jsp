@@ -33,7 +33,7 @@
 		<frameset cols="260,*" id="frame">
 			<frame src="layout/left.jsp" name="leftFrame" noresize="noresize"
 				marginwidth="50px" marginheight="0" frameborder="0" scrolling="No" />
-			<frame src="personalCenter/notifications.jsp" id="main" name="main" frameborder="0" />
+			<frame src="NotificationsServlet" id="main" name="main" frameborder="0" />
 		</frameset>
 		<frame src="layout/bottom.jsp" name="bottomFrame" scrolling="No"
 			noresize="noresize" id="bottomFrame" marginwidth="0" marginheight="0" />

@@ -31,7 +31,7 @@
 			<div class="header-quicklink">
 				欢迎您，
 				<strong>${sessionScope.loginedEmployee.username }</strong>
-				<a href="">[修改密码]</a>
+				<a href="personalCenter/changepassword.jsp" target="main">[修改密码]</a>
 
 				<div>
 					目前网站访问次数：

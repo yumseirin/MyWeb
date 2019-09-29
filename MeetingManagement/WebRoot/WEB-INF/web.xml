@@ -14,6 +14,10 @@
 		<servlet-class>servlet.RegisterServlet</servlet-class>
 	</servlet>
 	<servlet>
+		<servlet-name>RegDepServlet</servlet-name>
+		<servlet-class>servlet.RegDepServlet</servlet-class>
+	</servlet>
+	<servlet>
 		<servlet-name>GetDepServlet</servlet-name>
 		<servlet-class>servlet.GetDepServlet</servlet-class>
 	</servlet>
@@ -105,6 +109,11 @@
     <servlet-name>DoCancelMeetingServlet</servlet-name>
     <servlet-class>servlet.DoCancelMeetingServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>ChangPassWordServlet</servlet-name>
+    <servlet-class>servlet.ChangPassWordServlet</servlet-class>
+  </servlet>
+
 
 
 
@@ -129,6 +138,10 @@
 	<servlet-mapping>
 		<servlet-name>RegisterServlet</servlet-name>
 		<url-pattern>/register</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RegDepServlet</servlet-name>
+		<url-pattern>/RegDepServlet</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>GetDepServlet</servlet-name>
@@ -221,6 +234,10 @@
   <servlet-mapping>
     <servlet-name>DoCancelMeetingServlet</servlet-name>
     <url-pattern>/DoCancelMeetingServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ChangPassWordServlet</servlet-name>
+    <url-pattern>/ChangPassWordServlet</url-pattern>
   </servlet-mapping>
 
 	<!-- =======================设置监听======================== -->

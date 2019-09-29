@@ -24,7 +24,7 @@
 		<link rel="stylesheet" type="text/css" href="styles/common03.css" />
 		<script src="js/jquery-1.8.3.min.js" type="text/javascript">
 </script>
-		<script>
+		<script type="text/javascript">
 function departmentbyid(depid) {
 	$.post("SelectDepByIdServlet", {
 		id : depid
@@ -67,7 +67,16 @@ function editDep(depid) {
 			});
 		departmentbyid(depid);
 	}
+}
 
+function departmentnameCheck(){
+	$("#spdepartmentname").html("");
+	var departmentname = $("#departmentname").val();
+	if (departmentname==""||departmentname==null) {
+		$("#spdepartmentname").html("部门名称不能为空!");
+		document.getElementById("departmentname").focus();
+		return false;
+	}
 }
 </script>
 	</head>
@@ -85,8 +94,9 @@ function editDep(depid) {
 					</legend>
 					${error} 部门名称:
 					<input type="text" id="departmentname" name="departmentname"
-						maxlength="20" />
-					<input type="submit" class="clickbutton" value="添加" />
+						maxlength="20" onblur=""/>
+					<input type="submit" class="clickbutton" value="添加" onclick="return departmentnameCheck();"/>
+					<span id="spdepartmentname" style="color:red;"></span>
 				</fieldset>
 			</form>
 

@@ -168,4 +168,14 @@ public class EmployeeService {
 			int startrow, int endrow) {
 		return dao.searchAllEmp(realname, username, startrow, endrow);
 	}
+	
+	/**
+	 * 
+	 * @param employeeid
+	 * @param newpassword
+	 * @return 修改成功返回更改条数（1），失败返回-1
+	 */
+	public int updatPasswordByID(int employeeid,String newpassword){
+		return dao.updatPasswordByID(employeeid, newpassword);
+	}
 }

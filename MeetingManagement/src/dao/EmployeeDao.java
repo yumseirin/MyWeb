@@ -454,5 +454,30 @@ public class EmployeeDao extends DataBaseFactory {
 		}
 		return list;
 	}
+	
+	/**
+	 * 
+	 * @param employeeid
+	 * @param newpassword
+	 * @return 修改成功返回更改条数（1），失败返回-1
+	 */
+	public int updatPasswordByID(int employeeid,String newpassword){
+		int count = 0 ;
+		Connection conn = getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = "update employee set password = ? where employeeid=? ";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, newpassword);
+			ps.setInt(2, employeeid);
+			count=executeUpdate(ps);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, ps, conn);
+		}
+		return count;
+	}
 
 }

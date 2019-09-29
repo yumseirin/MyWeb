@@ -1,43 +1,66 @@
 //------预订会议表单验证----------------------------------------------------------------------------------
 function validate() {
+	document.getElementById("spmeetingname").innerHTML = "";
+	document.getElementById("spmeetingpersonnum").innerHTML = "";
+	document.getElementById("spmeetingstarttime").innerHTML = "";
+	document.getElementById("spmeetingendtime").innerHTML = "";
 
 	var meetingname = document.getElementById("meetingname").value;
 	var meetingpersonnum = document.getElementById("meetingpersonnum").value;
 	var meetingstarttime = document.getElementById("meetingstarttime").value;
 	var meetingendtime = document.getElementById("meetingendtime").value;
-
+	var oproomid = document.getElementById("oproomid").value;
+	
 	if (trim(meetingname) == "") {
-		alert("会议名称不能为空！");
+		//alert("会议名称不能为空！");
+		document.getElementById("spmeetingname").innerHTML = "会议名称不能为空！";
 		document.getElementById("meetingname").focus();
 		return false;
 	}
 	if (trim(meetingpersonnum) == "") {
-		alter("预计参加人数不能为空");
+		//alter("预计参加人数不能为空");
+		document.getElementById("spmeetingpersonnum").innerHTML = "预计参加人数不能为空";
 		document.getElementById("meetingpersonnum").focus();
 		return false;
 	}
 	if (isNum(meetingpersonnum)) {
-		alert("预计参加人数只能是数字");
+		//alert("预计参加人数只能是数字");
+		document.getElementById("spmeetingpersonnum").innerHTML = "预计参加人数只能是数字";
 		return false;
 	}
-
+	if (trim(meetingpersonnum) == 0) {
+		//alter("预计参加人数不能为空");
+		document.getElementById("spmeetingpersonnum").innerHTML = "预计参加人数不能为0";
+		document.getElementById("meetingpersonnum").focus();
+		return false;
+	}
 	if (trim(meetingstarttime) == "") {
-		alert("预计开始时间不能为空！");
+		//alert("预计开始时间不能为空！");
+		document.getElementById("spmeetingstarttime").innerHTML = "预计开始时间不能为空！";
 		document.getElementById("meetingstarttime").focus();
 		return false;
 	}
 	if (trim(meetingendtime) == "") {
-		alert("预计结束时间不能为空！");
+		//alert("预计结束时间不能为空！");
+		document.getElementById("spmeetingendtime").innerHTML = "预计结束时间不能为空！";
 		document.getElementById("meetingendtime").focus();
 		return false;
 	}
-
+	if (meetingstarttime == meetingendtime || meetingendtime < meetingstarttime) {
+		//alert("起始结束时间有误！");
+		document.getElementById("spmeetingstarttime").innerHTML = "起始结束时间有误！";
+		document.getElementById("meetingstarttime").focus();
+		return false;
+	}
+	if (oproomid == -1){
+		return false;		
+	}
 }
 
-//非空校验 
+//去掉前后空格
 function trim(str) {
 
-	return str.replace(/(^\s+)|(\s+$)/g, "");
+	return str.replace(/(^\s+)|(\s+$)/g, "");//去除前后空格
 
 }
 //是否是数字
@@ -155,10 +178,10 @@ function showEmployees()
                         selSelectedEmployees.options.remove(i);
                     }
                 }
-                setSelected();
+                setSelected();//移除某项后把剩下的选项全选
          }     
              
-        function setSelected()
+        function setSelected()//全选
         {
          		var selSelectedEmployees=document.getElementById("selSelectedEmployees");  //最终选中参加会议的员工   
                 for(var i=0;i<selSelectedEmployees.options.length;i++)
@@ -170,34 +193,35 @@ function showEmployees()
 //++++++++++++++++++选择会议室 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++   
         function chooseMeetingRooms()
         { 
+        	validate();
         	var meetingpersonnum=document.getElementById("meetingpersonnum").value;   //参会人数
 	        var meetingstarttime=document.getElementById("meetingstarttime").value;  //预计开始时间	
 	        var meetingendtime=document.getElementById("meetingendtime").value;     //预计结束时间
 	        
-	        if(meetingpersonnum =="")
-	        {
-	           alert("请选择预计参加人数");
-	           $("#roomid").blur();
-	           return false;
-	        }
-	        if(meetingstarttime =="")
-	        {
-	           alert("请选择会议预计开始时间");
-	           $("#roomid").blur();
-	           return false;
-	        }
-	        if(meetingendtime =="")
-	        {
-	           alert("请选择会议预计结束时间");
-	           $("#roomid").blur();
-	           return false;
-	        }
-	        if(meetingstarttime==meetingendtime || meetingendtime< meetingstarttime)
-	        {
-	           alert("起始结束时间有误！");
-	           $("#roomid").blur();
-	           return false;
-	        }
+//	        if(meetingpersonnum =="")
+//	        {
+//	           //alert("请选择预计参加人数");
+//	           $("#roomid").blur();
+//	           return false;
+//	        }
+//	        if(meetingstarttime =="")
+//	        {
+//	           alert("请选择会议预计开始时间");
+//	           $("#roomid").blur();
+//	           return false;
+//	        }
+//	        if(meetingendtime =="")
+//	        {
+//	           alert("请选择会议预计结束时间");
+//	           $("#roomid").blur();
+//	           return false;
+//	        }
+//	        if(meetingstarttime==meetingendtime || meetingendtime< meetingstarttime)
+//	        {
+//	           alert("起始结束时间有误！");
+//	           $("#roomid").blur();
+//	           return false;
+//	        }
 	        $.post("ChooseMeetingRoomsServlet", {
 	        		meetingpersonnum : meetingpersonnum,
 					meetingstarttime : meetingstarttime,
@@ -206,13 +230,16 @@ function showEmployees()
         }      
         function callBackRoomsSuccess(data) {
 	     	var str="";
+	     	document.getElementById("sproomid").innerHTML="无可用会议室！";
 			if (data != null && data != "") {
 		 	for(var  i=0;i<data.length;i++){
 		    str+="<option value=\""+data[i].roomid+"\">"+data[i].roomname+"</option>"
 		    }
+		 	document.getElementById("sproomid").innerHTML="";
 			$("#roomid").html("");
 		    $("#roomid").append(str);
 			}
+			
 		}
         /*
          function refresh()

@@ -90,7 +90,8 @@
 						<tr>
 							<td colspan="6" class="command">
 								<input type="submit" class="clickbutton" value="查询" />
-								<input type="reset" class="clickbutton" value="重置" />
+								<input type="reset" class="clickbutton" value="重置" 
+								onclick='location.href=("SearchEmployeeServlet")'/>
 							</td>
 						</tr>
 					</table>
