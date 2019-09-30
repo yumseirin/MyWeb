@@ -22,8 +22,46 @@
 	<link rel="stylesheet" type="text/css" href="styles/common.css" />
 	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript">
+function origincheck(){
+	document.getElementById("sporigin").innerHTML = "";
+	var origin = document.getElementById("origin").value;
+	if (trim(origin) == "") {
+		document.getElementById("sporigin").innerHTML = "原密码不能为空！";
+		document.getElementById("origin").focus();
+		return false;
+	}
+}
+function newcheck(){
+	document.getElementById("spnew").innerHTML = "";
+	var newpass = document.getElementById("new").value;
+	if (trim(newpass) == "") {
+		document.getElementById("spnew").innerHTML = "新密码不能为空！";
+		document.getElementById("new").focus();
+		return false;
+	}
+	if(!/^(\w){6,20}$/.test(trim(newpass))){
+		document.getElementById("spnew").innerHTML = "只能输入6-20个字母、数字、下划线！";
+		document.getElementById("new").focus();
+		return false;
+	}
+}
+function confirmcheck(){
+	document.getElementById("spconfirm").innerHTML = "";
+	var newpass = document.getElementById("new").value;
+	var confirm = document.getElementById("confirm").value;
+	if (trim(confirm) == "") {
+		document.getElementById("spconfirm").innerHTML = "确认密码不能为空！";
+		document.getElementById("confirm").focus();
+		return false;
+	}
+	if (trim(newpass)!=trim(confirm)) {
+		document.getElementById("spconfirm").innerHTML = "密码不一致！";
+		document.getElementById("confirm").focus();
+		return false;
+	}
+}
 function changPassWordvalidate(){
-	document.getElementById("sproomnum").innerHTML = "";
+	document.getElementById("sporigin").innerHTML = "";
 	document.getElementById("spnew").innerHTML = "";
 	document.getElementById("spconfirm").innerHTML = "";
 
@@ -58,9 +96,9 @@ function changPassWordvalidate(){
 	}
 }
 //去掉前后空格
-//function trim(str) {
-//	return str.replace(/(^\s+)|(\s+$)/g, "");//去除前后空格
-//}
+function trim(str) {
+	return str.replace(/(^\s+)|(\s+$)/g, "");//去除前后空格
+}
 	</script>
 
 	</head>
@@ -69,7 +107,7 @@ function changPassWordvalidate(){
 			<div class="content-nav">
 				修改密码
 			</div>
-			<form onsubmit= "return changPassWordvalidate();" action="ChangPassWordServlet" method="post">
+			<form onsubmit="return changPassWordvalidate();" action="ChangPassWordServlet" method="post">
 				<fieldset>
 					<legend>
 						修改密码信息
@@ -87,7 +125,7 @@ function changPassWordvalidate(){
 								原密码:
 							</td>
 							<td>
-								<input id="origin" name="origin" type="password" />
+								<input id="origin" onblur="origincheck()" name="origin" type="password" />
 								<span id="sporigin" style="color:red;"></span>
 							</td>
 						</tr>
@@ -96,7 +134,7 @@ function changPassWordvalidate(){
 								新密码:
 							</td>
 							<td>
-								<input id="new" name="new" type="password" placeholder="6-20个字母数字下划线"/>
+								<input id="new" onblur="newcheck()" name="new" type="password" placeholder="6-20个字母数字下划线"/>
 								<span id="spnew" style="color:red;"></span>
 							</td>
 						</tr>
@@ -105,7 +143,7 @@ function changPassWordvalidate(){
 								确认新密码：
 							</td>
 							<td>
-								<input id="confirm" name="confirm" type="password" />
+								<input id="confirm" onblur="confirmcheck()" name="confirm" type="password" />
 								<span id="spconfirm" style="color:red;"></span>
 							</td>
 						</tr>
