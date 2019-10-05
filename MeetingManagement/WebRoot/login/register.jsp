@@ -29,9 +29,9 @@ $(function() {
 	});
 });
 function departmentid() {
-	$.post("GetDepServlet", {}, callBackdepartmentidSuccess);
+	$.post("GetDepServlet", {}, callBackRegdepartmentidSuccess);
 }
-function callBackdepartmentidSuccess(data) {
+function callBackRegdepartmentidSuccess(data) {
 	var str = "";
 	if (data != null && data != "") {
 		for ( var i = 0; i < data.length; i++) {
@@ -76,8 +76,8 @@ function passwordcheck() {
 		$("#fpassword").html("密码不能为空");
 		return false;
 	}
-	if (!/\w{6,16}/.test(password)) {
-		$("#fpassword").html("6-16位由英文和数字组成");
+	if (!/\w{4,16}/.test(password)) {
+		$("#fpassword").html("4-16位由英文和数字组成");
 		return false;
 	}
 }
@@ -98,7 +98,7 @@ function phonecheck() {
 		return false;
 	}
 	if (!/^1(3|4|5|7|8)\d{9}$/.test(phone)) {
-		$("#fphone").html("电话格式不对！");
+		$("#fphone").html("请输入13、14、15、17、18开头的11位数字！");
 		return false;
 	}
 }
@@ -115,9 +115,68 @@ function emailcheck() {
 	}
 }
 function registervalidate() {
-	if (!realnamecheck() && !usernamecheck() && !passwordcheck()
-			&& !repasswordcheck() && !phonecheck() && !emailcheck())
-		return false; }
+	$("#frealname").html("*");
+	var user = $("#realname").val();
+	if (user == "") {
+		$("#frealname").html("真实姓名不能为空");
+		return false;
+	}
+	if (!/^([\u4e00-\u9fa5]{1,20}|[a-zA-Z\\.\\s]{1,20})$/.test(user)) {
+		$("#frealname").html("请输入纯英文或中文，不得超过20位");
+		return false;
+	}
+	
+	$("#fusername").html("*");
+	var user = $("#username").val();
+	if (user == "") {
+		$("#fusername").html("用户名不能为空");
+		return false;
+	}
+	if (!/[a-zA-Z]\w{4,16}/.test(user)) {
+		$("#fusername").html("4-16位由英文开头，英文和数字组成");
+		return false;
+	}
+	
+	$("#fpassword").html("*");
+	var password = $("#password").val();
+	if (password == "") {
+		$("#fpassword").html("密码不能为空");
+		return false;
+	}
+	if (!/\w{4,16}/.test(password)) {
+		$("#fpassword").html("4-16位由英文和数字组成");
+		return false;
+	}
+	
+	$("#frepassword").html("*");
+	var repassword = $("#repassword").val();
+	if (password != repassword) {
+		$("#frepassword").html("密码不一致！");
+		return false;
+	}
+	
+	$("#fphone").html("");
+	var phone = $("#phone").val();
+	if (phone == "") {
+		$("#fphone").html("电话不能为空!");
+		return false;
+	}
+	if (!/^1(3|4|5|7|8)\d{9}$/.test(phone)) {
+		$("#fphone").html("请输入13、14、15、17、18开头的11位数字！");
+		return false;
+	}
+	
+	$("#femail").html("");
+	var email = $("#email").val();
+	if (email == "") {
+		$("#femail").html("邮箱不能为空!");
+		return false;
+	}
+	if (!/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$/.test(email)) {
+		$("#femail").html("邮箱格式不对！");
+		return false;
+	}
+}
 </script>
 	</head>
 	<body>
@@ -125,7 +184,7 @@ function registervalidate() {
 			<div class="content-nav">
 				人员管理 &gt; 员工注册
 			</div>
-			<form onsubmit="return registervalidate();" action="register"
+			<form onsubmit="return registervalidate()" action="register"
 				name="register" method="post">
 				<fieldset>
 					<legend>
