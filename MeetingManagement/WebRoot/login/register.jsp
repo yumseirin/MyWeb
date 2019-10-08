@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*,servlet.RegDepServlet" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String path = request.getContextPath();
@@ -29,7 +29,7 @@ $(function() {
 	});
 });
 function departmentid() {
-	$.post("GetDepServlet", {}, callBackRegdepartmentidSuccess);
+	$.post("RegDepServlet", {}, callBackRegdepartmentidSuccess);
 }
 function callBackRegdepartmentidSuccess(data) {
 	var str = "";
