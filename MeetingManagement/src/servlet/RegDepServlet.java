@@ -31,12 +31,12 @@ public class RegDepServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//List<Department> list = departmentService.selectAllDepartment();
-		List<Department> list = departmentService.selectAllUsableDepartment();
-		String str = JSON.toJSONString(list);
-		System.out.println(str);
+		List<Department> reglist = departmentService.selectAllUsableDepartment();
+		String regstr = JSON.toJSONString(reglist);
+		System.out.println(regstr);
 		response.setContentType("application/json;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		out.println(str);
+		out.println(regstr);
 		out.flush();
 		out.close();
 	}
