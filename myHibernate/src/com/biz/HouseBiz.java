@@ -1,8 +1,10 @@
 package com.biz;
 
 import java.util.List;
+import java.util.Set;
 
 import com.dao.HouseDao;
+import com.vo.Jiedao;
 import com.vo.Qu;
 
 public class HouseBiz {
@@ -30,5 +32,9 @@ public class HouseBiz {
 
 	public Qu selectQuByIdLoad(String dno) {
 		return dao.selectQuByIdLoad(dno);
+	}
+
+	public void addQuAndJiedao(Qu qu, Set<Jiedao> jiedaos) {
+		dao.addQuAndJiedao(qu, jiedaos);
 	}
 }

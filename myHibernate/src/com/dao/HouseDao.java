@@ -1,12 +1,14 @@
 package com.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.hib.HibernateSessionFactory;
+import com.vo.Jiedao;
 import com.vo.Qu;
 
 public class HouseDao {
@@ -89,7 +91,7 @@ public class HouseDao {
 	}
 
 	/**
-	 * 查询所有数据
+	 * 查询区的所有数据
 	 * 
 	 * @return List<Qu>
 	 */
@@ -111,7 +113,7 @@ public class HouseDao {
 	}
 
 	/**
-	 * 根据dno查询数据（用get方法立即加载）
+	 * 根据dno查询区的数据（用get方法立即加载）
 	 * 
 	 * @param dno
 	 * @return Qu
@@ -130,7 +132,7 @@ public class HouseDao {
 	}
 
 	/**
-	 * 根据dno查询数据（用load方法延迟加载）
+	 * 根据dno查询区的数据（用load方法延迟加载）
 	 * 
 	 * @param dno
 	 * @return Qu
@@ -147,4 +149,26 @@ public class HouseDao {
 		return qu;
 	}
 
+	/**
+	 * 同时添加区和街道
+	 * 
+	 * @param qu
+	 * @param jiedaos
+	 */
+	public void addQuAndJiedao(Qu qu, Set<Jiedao> jiedaos) {
+		Session session = HibernateSessionFactory.getSession();
+		try {
+			// 添加区
+			session.save(qu);
+			// 添加街道
+			for (Jiedao j : jiedaos) {
+				session.save(j);
+			}
+			session.flush();// 让缓存和数据库中的数据同步
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
 }
