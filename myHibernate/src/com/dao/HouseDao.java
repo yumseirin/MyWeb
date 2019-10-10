@@ -98,6 +98,7 @@ public class HouseDao {
 		List<Qu> quList = null;
 		Session session = HibernateSessionFactory.getSession();
 		String hql = "from Qu";
+		// String hql = "from Qu q where q.dno = 'changchun_lvyuan'";
 		try {
 			Query query = session.createQuery(hql);
 			quList = query.list();
@@ -107,6 +108,43 @@ public class HouseDao {
 			HibernateSessionFactory.closeSession();
 		}
 		return quList;
+	}
+
+	/**
+	 * 根据dno查询数据（用get方法立即加载）
+	 * 
+	 * @param dno
+	 * @return Qu
+	 */
+	public Qu selectQuByIdGet(String dno) {
+		Session session = HibernateSessionFactory.getSession();
+		Qu qu = null;
+		try {
+			qu = (Qu) session.get(Qu.class, dno);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+		return qu;
+	}
+
+	/**
+	 * 根据dno查询数据（用load方法延迟加载）
+	 * 
+	 * @param dno
+	 * @return Qu
+	 */
+	public Qu selectQuByIdLoad(String dno) {
+		Session session = HibernateSessionFactory.getSession();
+		Qu qu = null;
+		try {
+			// 调用load()方法时会返回一个目标对象的代理对象，在这个代理对象中只储存了目标对象的ID值
+			qu = (Qu) session.load(Qu.class, dno);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return qu;
 	}
 
 }

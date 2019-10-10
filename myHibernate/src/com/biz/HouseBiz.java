@@ -23,4 +23,12 @@ public class HouseBiz {
 	public List<Qu> selectAllQu() {
 		return dao.selectAllQu();
 	}
+
+	public Qu selectQuByIdGet(String dno) {
+		return dao.selectQuByIdGet(dno);
+	}
+
+	public Qu selectQuByIdLoad(String dno) {
+		return dao.selectQuByIdLoad(dno);
+	}
 }

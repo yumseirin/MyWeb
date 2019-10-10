@@ -3,6 +3,7 @@ package com.ui;
 import java.util.List;
 
 import com.biz.HouseBiz;
+import com.hib.HibernateSessionFactory;
 import com.vo.Qu;
 
 public class HouseUi {
@@ -40,10 +41,26 @@ public class HouseUi {
 		}
 	}
 
+	public void selectQuByIdGet() {
+		String dno = "changchun_lvyuan";
+		Qu qu = biz.selectQuByIdGet(dno);
+		System.out.println(qu.getDno() + "," + qu.getName());
+	}
+
+	public void selectQuByIdLoad() {
+		String dno = "changchun_lvyuan";
+		Qu qu = biz.selectQuByIdLoad(dno);
+		System.out.println(qu.getDno() + "," + qu.getName());
+		// 用load要拿完值后关闭数据库
+		HibernateSessionFactory.closeSession();
+	}
+
 	public static void main(String[] args) {
 		// new HouseUi().addQu();
 		// new HouseUi().deleteQu();
 		// new HouseUi().updateQu();
-		new HouseUi().selectAllQu();
+		// new HouseUi().selectAllQu();
+		// new HouseUi().selectQuByIdGet();
+		// new HouseUi().selectQuByIdLoad();
 	}
 }
