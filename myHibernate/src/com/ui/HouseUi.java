@@ -33,7 +33,7 @@ public class HouseUi {
 	public void updateQu() {
 		Qu qu = new Qu();
 		qu.setDno("changchun_lvyuan");
-		qu.setName("新绿园区");
+		qu.setName("绿园区");
 		biz.updateQu(qu);
 	}
 
@@ -100,6 +100,6 @@ public class HouseUi {
 		// new HouseUi().selectAllQu();
 		// new HouseUi().selectQuByIdGet();
 		// new HouseUi().selectQuByIdLoad();
-		new HouseUi().addQuAndJiedao();
+		// new HouseUi().addQuAndJiedao();
 	}
 }

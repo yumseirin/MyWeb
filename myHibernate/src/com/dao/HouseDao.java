@@ -73,7 +73,7 @@ public class HouseDao {
 	}
 
 	/**
-	 * 更改区（根据主键所有属性都更新，如果有点属性没set，那么就会为空，这是整体的更新）
+	 * 更改区（根据主键所有属性都更新，如果有点属性没set，那么就会为空，这是整体的更新） get 结合 update 才能实现完美的更新
 	 * 
 	 * @param qu
 	 */
@@ -81,7 +81,9 @@ public class HouseDao {
 		Session session = HibernateSessionFactory.getSession();
 
 		try {
-			session.update(qu);
+			Qu q = (Qu) session.get(Qu.class, qu.getDno());
+			q.setName(qu.getName());
+			session.update(q);
 			session.flush();
 		} catch (Exception e) {
 			e.printStackTrace();
