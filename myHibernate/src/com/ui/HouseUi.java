@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.biz.HouseBiz;
 import com.hib.HibernateSessionFactory;
+import com.vo.House;
 import com.vo.Jiedao;
 import com.vo.Qu;
 
@@ -93,6 +94,17 @@ public class HouseUi {
 
 	}
 
+	// sql从6张表中取数据
+	public void selectAllHouse() {
+
+		List<House> list = biz.selectAllHouse();
+		for (House h : list) {
+
+			System.out.println(h.getUname());
+		}
+
+	}
+
 	public static void main(String[] args) {
 		// new HouseUi().addQu();
 		// new HouseUi().deleteQu();
@@ -101,5 +113,6 @@ public class HouseUi {
 		// new HouseUi().selectQuByIdGet();
 		// new HouseUi().selectQuByIdLoad();
 		// new HouseUi().addQuAndJiedao();
+		new HouseUi().selectAllHouse();
 	}
 }

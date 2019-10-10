@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.dao.HouseDao;
+import com.vo.House;
 import com.vo.Jiedao;
 import com.vo.Qu;
 
@@ -36,5 +37,9 @@ public class HouseBiz {
 
 	public void addQuAndJiedao(Qu qu, Set<Jiedao> jiedaos) {
 		dao.addQuAndJiedao(qu, jiedaos);
+	}
+
+	public List<House> selectAllHouse() {
+		return dao.selectAllHouse();
 	}
 }

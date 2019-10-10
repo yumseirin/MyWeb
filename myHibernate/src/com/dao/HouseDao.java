@@ -1,13 +1,17 @@
 package com.dao;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.hib.HibernateSessionFactory;
+import com.vo.House;
 import com.vo.Jiedao;
 import com.vo.Qu;
 
@@ -173,4 +177,42 @@ public class HouseDao {
 			HibernateSessionFactory.closeSession();
 		}
 	}
+
+	/**
+	 * sql从6张表中取数据
+	 */
+	public List<House> selectAllHouse() {
+
+		List<House> list = new ArrayList<House>();
+
+		Session session = HibernateSessionFactory.getSession();
+
+		String sql = "select qu.name as qname,thousetype.name  as tname, thouse.hdesc,thouserent.uname,"
+				+ " thouserent.price,thouserent.rdesc,thouserent.rdate,tuser.pwd,jiedao.name as jname "
+				+ " from jiedao, qu,thouse,thouserent, thousetype,tuser "
+				+ " where qu.dno = jiedao.dno  and jiedao.sno = thouse.sno and "
+				+ " thouse.hid = thouserent.hid and thousetype.id = thouse.htid and "
+				+ " tuser.uname = thouserent.uname";
+
+		SQLQuery query = session.createSQLQuery(sql);
+		Iterator it = query.list().iterator();
+		while (it.hasNext()) {
+			House h = new House();
+			Object[] obj = (Object[]) it.next();
+			h.setQname(obj[0].toString());
+			h.setTname(obj[1].toString());
+			h.setHdesc(obj[2].toString());
+			h.setUname(obj[3].toString());
+			h.setPrice(Float.parseFloat(obj[4].toString()));
+			h.setRdesc(obj[5].toString());
+			h.setRdate((java.util.Date) obj[6]);
+			h.setTname(obj[7].toString());
+			h.setTname(obj[8].toString());
+
+			list.add(h);
+		}
+		HibernateSessionFactory.closeSession();
+		return list;
+	}
+
 }
