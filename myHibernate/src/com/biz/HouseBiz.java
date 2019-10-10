@@ -7,6 +7,14 @@ public class HouseBiz {
 	private HouseDao dao = new HouseDao();
 
 	public void addQu(Qu qu) {
-		dao.addQu(qu);
+		dao.addQuAutocommit(qu);
+	}
+
+	public void deleteQu(Qu qu) {
+		dao.deleteQu(qu);
+	}
+
+	public void updateQu(Qu qu) {
+		dao.updateQu(qu);
 	}
 }
