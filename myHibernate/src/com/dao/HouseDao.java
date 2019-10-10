@@ -1,5 +1,8 @@
 package com.dao;
 
+import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -49,6 +52,11 @@ public class HouseDao {
 		}
 	}
 
+	/**
+	 * 删除区
+	 * 
+	 * @param qu
+	 */
 	public void deleteQu(Qu qu) {
 		Session session = HibernateSessionFactory.getSession();
 
@@ -62,6 +70,11 @@ public class HouseDao {
 		}
 	}
 
+	/**
+	 * 更改区（根据主键所有属性都更新，如果有点属性没set，那么就会为空，这是整体的更新）
+	 * 
+	 * @param qu
+	 */
 	public void updateQu(Qu qu) {
 		Session session = HibernateSessionFactory.getSession();
 
@@ -73,6 +86,27 @@ public class HouseDao {
 		} finally {
 			HibernateSessionFactory.closeSession();
 		}
+	}
+
+	/**
+	 * 查询所有数据
+	 * 
+	 * @return List<Qu>
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Qu> selectAllQu() {
+		List<Qu> quList = null;
+		Session session = HibernateSessionFactory.getSession();
+		String hql = "from Qu";
+		try {
+			Query query = session.createQuery(hql);
+			quList = query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+		return quList;
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.biz;
 
+import java.util.List;
+
 import com.dao.HouseDao;
 import com.vo.Qu;
 
@@ -16,5 +18,9 @@ public class HouseBiz {
 
 	public void updateQu(Qu qu) {
 		dao.updateQu(qu);
+	}
+
+	public List<Qu> selectAllQu() {
+		return dao.selectAllQu();
 	}
 }

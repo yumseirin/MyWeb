@@ -1,5 +1,7 @@
 package com.ui;
 
+import java.util.List;
+
 import com.biz.HouseBiz;
 import com.vo.Qu;
 
@@ -31,9 +33,17 @@ public class HouseUi {
 		biz.updateQu(qu);
 	}
 
+	public void selectAllQu() {
+		List<Qu> quList = biz.selectAllQu();
+		for (Qu qu : quList) {
+			System.out.println(qu.getDno() + "," + qu.getName());
+		}
+	}
+
 	public static void main(String[] args) {
 		// new HouseUi().addQu();
 		// new HouseUi().deleteQu();
-		new HouseUi().updateQu();
+		// new HouseUi().updateQu();
+		new HouseUi().selectAllQu();
 	}
 }
