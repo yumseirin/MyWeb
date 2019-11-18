@@ -1,5 +1,5 @@
---create user meeting identified by meeting;
---grant dba to meeting;
+--create user meeting identified by xxxx;  --xxxx密码 --创建用户并设密码
+--grant dba to meeting;  --给用户dba权限
 
 --------------------------计数器表--------------------------------------------------------------------------------
 CREATE TABLE counter (
