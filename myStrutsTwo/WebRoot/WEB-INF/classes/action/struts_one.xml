@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.multipart.maxSize" value="10485760"></constant>
+	<package name="login" extends="struts-default" namespace="/">
+	
+		<interceptors>
+			<interceptor name="one" class="inter.Inter1"></interceptor>
+			<interceptor name="two" class="inter.Inter2"></interceptor>
+			<interceptor name="three" class="inter.Inter3"></interceptor>
+			<interceptor name="four" class="inter.AdminInt"></interceptor>
+			<interceptor-stack name="aa">
+				<interceptor-ref name="one"></interceptor-ref>
+				<interceptor-ref name="two"></interceptor-ref>
+				<interceptor-ref name="three">
+					<param name="includeMethods">login2</param>
+					<!--
+						对LoginAction中的execute方法进行拦截
+					-->
+					<param name="excludeMethods">login</param>
+					<!--
+						对LoginAction中的MyExecute方法不进行拦截
+					-->
+				</interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+			<interceptor-stack name="bb">
+				<interceptor-ref name="four"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		<action name="loginAction" class="action.LoginAction">
+			<result name="success">/WEB-INF/welcome.jsp</result>
+			<result name="fail">/WEB-INF/fail.jsp</result>
+			<interceptor-ref name="aa"></interceptor-ref>
+		</action>
+		
+		<action name="adminAction" class="action.AdminAction">
+			<result name="success">/WEB-INF/success.jsp</result>
+			<result name="fail">/WEB-INF/fail.jsp</result>
+			<interceptor-ref name="bb"></interceptor-ref>
+		</action>
+		
+		<action name="fileUpLoadAction" class="action.FileUpLoadAction">
+			<result name="success">index.jsp</result>
+			<result name="input">error.jsp</result>
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">image/bmp,image/png,image/gif</param>
+				<param name="maximumSize">102400</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+		</action>
+		
+		<action name="downloadAction" class="action.DownloadAction">
+			<!-- 可以实现文件的下载功能 -->
+			<result name="success" type="stream">
+				<!-- 让浏览器总是提示一个文件下载对话框 -->
+				<param name="contentType">application/octet-stream</param>
+				<!-- 返回的InputStream对象将被发送到浏览器 -->
+				<param name="inputName">inputStream</param>
+				<!-- 文件处理方式 ${}内部为ognl表达式-->
+				<param name="contentDisposition">attachment;fileName=${fileName}</param>
+				<!-- 通过OutputStream对象向浏览器发送数据时使用的缓冲区的长度 -->
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		
+	</package>
+</struts>    

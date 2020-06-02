@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+      "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<!-- 用于存放数据库用户名密码的配置文件 -->
+	<properties resource="config.properties">
+		<!-- 不引用外部配置文件可以直接用property标签再用${}引用（意义不大） -->
+		<property name="p_url" value="jdbc:oracle:thin:@localhost:1521:orcl" />
+	</properties>
+	<!-- 别名 -->
+	<typeAliases>
+		<typeAlias alias="House" type="vo.House" />
+	</typeAliases>
+	<!--   第一部分 （数据库设置）-->
+	<environments default="development">
+		<environment id="development">
+			<!-- 事务管理器，用JDBC的 -->
+			<transactionManager type="JDBC" />
+			<!-- 数据源:数据库连接池 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.OracleDriver" />
+				<property name="url" value="${p_url}" />
+				<!--
+					<property name="driver" value="com.mysql.jdbc.Driver" /> <property
+					name="url"
+					value="jdbc:mysql://localhost:3306/mysql?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"
+					/>
+				-->
+				<property name="username" value="${dev_user}" />
+				<property name="password" value="${dev_password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<!--第二部分 （sql语句）-->
+		<!--映射文件  真正的sql代码部分写在这个文件中-->
+		<mapper resource="mybatis/HouseDaoMapper.xml" />
+		<mapper resource="mybatis/UserAndOrderDaoMapper.xml" />
+	</mappers>
+</configuration>

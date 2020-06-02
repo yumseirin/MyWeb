@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- 开启动态方法调用 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+
+	<!--
+		创建Action的工厂类为spring，也就是struts的action交给spring管理
+		白话：创建Action对像不是由struts来创建，而是由spring来创建 也就是说value里的值是
+		spring配置文件中的bean标签的id
+	-->
+	<constant name="struts.objectFactory" value="spring"></constant>
+	
+	<package name="zhuce" extends="struts-default">
+		<action name="zhuceAction" class="zhuceAction" >
+			<result name="success">/success.jsp</result>
+		</action>
+	</package>
+</struts>    

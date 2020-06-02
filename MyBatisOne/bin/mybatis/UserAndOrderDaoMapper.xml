@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<!-- namespace 的值是接口 -->
+<mapper namespace="mybatis.UserAndOrderDaoInf">
+
+	<resultMap type="vo.Orders" id="UserAndOrder" autoMapping="true">
+		<result property="num" column="num"></result>
+		<association property="user" javaType="vo.User"
+			autoMapping="true">
+			<result property="username" column="username"></result>
+		</association>
+	</resultMap>
+	<select id="selectUserAndOrder" parameterType="int" resultMap="UserAndOrder">
+		select o.*,u.* from Orders o,T_User u where o.id = u.id and u.id = #{id}
+	</select>
+
+</mapper>

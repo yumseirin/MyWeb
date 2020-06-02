@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<!-- namespace 的值是接口 -->
+<mapper namespace="mybatis.HouseDaoInf">
+
+	<insert id="addQu" parameterType="vo.Qu">
+		insert into Qu(id,name)
+		values(#{id},#{name})
+	</insert>
+
+	<insert id="addHouse" parameterType="House">
+		<selectKey resultType="int" keyProperty="hid" order="BEFORE">
+			select
+			House_seq.Nextval from dual
+		</selectKey>
+		insert into House(hid,hname,qid)
+		values(#{hid},#{hname},#{qid})
+	</insert>
+	<delete id="deleteHouse" parameterType="House">
+		delete from House where
+		hid=#{hid}
+    </delete>
+	<delete id="deleteHouseById" parameterType="int">
+		delete from House
+		where
+		hid=#{hid}
+    </delete>
+	<update id="updateHouse" parameterType="House">
+		update House set
+		hname=#{hname} where hid=#{hid} 
+    </update>
+
+	<sql id="housecol">hid,hname</sql>
+
+	<select id="selectHouse" parameterType="String" resultType="House">
+		select
+		<include refid="housecol"></include>
+		from House where hname=#{hname}
+	</select>
+	<select id="selectHouse2" resultType="House">
+		select
+		<include refid="housecol"></include>
+		from House where
+		hid=#{0} and hname=#{1}
+	</select>
+	<select id="selectHousemohu" parameterType="String" resultType="House">
+		select
+		<include refid="housecol"></include>
+		from House where hname like #{hname}
+	</select>
+
+</mapper>

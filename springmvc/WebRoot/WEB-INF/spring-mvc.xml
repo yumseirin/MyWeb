@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/mvc
+						http://www.springframework.org/schema/mvc/spring-mvc.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 用注解方式去作控制器，到base-package="com.control"包下扫描，控制器的标签 -->
+	<context:component-scan base-package="com.control" />
+	<!--注解-->
+	<mvc:annotation-driven />
+
+
+	<!-- ===============前缀后缀start================ -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	<!-- ===============前缀后缀end================ -->
+
+	<!-- ===============文件上传解析器start=============== -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!--  最大值上允许是50kb-->
+		<property name="maxUploadSize" value="50000" />
+	</bean>
+	<!-- ===============文件上传解析器start=============== -->
+
+	<!-- ===============异常解析器start=============== -->
+	<bean
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.Throwable">error</prop>
+				<!--
+					如果出现 MaxUploadSizeExceededException异常
+					就进入WEB-INF/error/OverMaxUploadSize.jsp页面， 此面页给出错误信息
+				-->
+				<prop
+					key="org.springframework.web.multipart.MaxUploadSizeExceededException">
+					/error/OverMaxUploadSize</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- ===============异常解析器end=============== -->
+</beans>
